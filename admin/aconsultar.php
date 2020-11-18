@@ -13,13 +13,8 @@ var_dump($_SESSION['incidencias']);
                 <td align="right"><strong>Tipo :</strong></td><td>
                  <div align="left">
                     <select name="tipo">
-                     <option value="Basuras">Basuras</option>
-                      <option value="Aseo Urbano">Aseo Urbano</option>
-                      <option value="Mobiliario Urbano">Mobiliario Urbano</option>
-                      <option value="Vandalismo">Vandalismo</option>
-                       <option value="Transporte">Transporte</option>
-                      <option value="Señales y Semaforos">Señales y Semaforos</option>
-                      <option value="Mobiliario Urbano">Otros</option>
+                    <option value="compraCoche">Compra de coche</option>
+                    <option value="reparacionVehiculo">Reparacion de vehiculo</option>
                     </select>
                 </div>
                </td>

@@ -41,7 +41,7 @@ echo'<!DOCTYPE html>
 
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Introduce tu contraseña" name="password" required>
-            
+                <a href="crearUsuario.php">¿Eres nuevo? Crea aqui una cuenta</a>
             
                 <input class="boton" type="submit" value="Log in" name="btn_login">
             </div>

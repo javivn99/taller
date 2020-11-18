@@ -14,13 +14,8 @@ include 'head.php';
               <tr><td align="right"><strong>Tipo :</strong></td><td>
               <div align="left">
                     <select name="tipo">
-                      <option value="Neumaticos">Neumaticos</option>
-                      <option value="Carroceria">Carroceria</option>
-                      <option value="Chasis">Chasis</option>
-                      <option value="Ventanillas">Ventanillas</option>
-                       <option value="Lunas">Lunas</option>
-                      <option value="Pintura">Pintura</option>
-                      <option value="Motor">Motor</option>
+                      <option value="compraCoche">Compra de coche</option>
+                      <option value="reparacionVehiculo">Reparacion de vehiculo</option>
                       
                     </select>
               </div></td></tr>
@@ -34,9 +29,9 @@ include 'head.php';
                       
                     </select>
               </div></td></tr>
-              <tr><td align="right"><strong>Descripcion: </strong></td><td>
+              <tr><td align="right"><strong>Especifique el tipo de everia: </strong></td><td>
               <div align="left">
-                    <textarea cols=50 rows=4 name="descripcion"></textarea>
+                    <textarea cols=50 rows=4 name="averia"></textarea>
               </div></td></tr>
               <tr ><td colspan="2"><div align="center"><strong>
             <input name="enviar" type="submit" id="enviar" value="Enviar"/>
