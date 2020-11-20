@@ -9,11 +9,11 @@ $email=$_REQUEST['email'];
     //declaro una variable de sesion
 $_SESSION['email']=$_REQUEST['email'];    
 $pass=$_REQUEST['password'];
-if($email=="admin@gmail.com" && $pass=="admin"){
+if($email=="admin1@gmail.com" || $email=="admin2@gmail.com" || $email=="admin3@gmail.com" || $email=="admin4@gmail.com" || $email=="admin5@gmail.com" || $email=="admin6@gmail.com"){
     header('Location:admin/aprincipal.php');//redirigir a otra pagina
 }
 
-if($email=="user@gmail.com" && $pass=="user"){
+if($email!="admin1@gmail.com" || $email!="admin2@gmail.com" || $email!="admin3@gmail.com" || $email!="admin4@gmail.com" || $email!="admin5@gmail.com" || $email!="admin6@gmail.com"){
     header('Location:user/uprincipal.php');//redirigir a otra pagina
 }
     
