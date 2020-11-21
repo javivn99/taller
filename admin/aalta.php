@@ -6,33 +6,46 @@ include 'head.php';
                                      
         <div   class="postcontent"><form action="" method="post">
             <table align="center" class="content-layout">
-              <tr>
-              <td align="right"><strong>Urgente? :</strong></td>
-              <td>
-
-              <input type="checkbox" name="urgente" value="urg"/>Si											  </td></tr>
-              <tr><td align="right"><strong>Tipo :</strong></td><td>
-              <div align="left">
-                    <select name="tipo">
-                      <option value="compraCoche">Compra de coche</option>
-                      <option value="reparacionVehiculo">Reparacion de vehiculo</option>
-                      
-                    </select>
-              </div></td></tr>
               
-              <tr><td align="right"><strong>Taller :</strong></td><td>
+            <tr><td align="right"><strong>DNI :</strong></td><td>
+            <div align="left">
+                  <input type="text" name="dni"/>
+            </div></td></tr>
+
+            <tr><td align="right"><strong>Matricula :</strong></td><td>
+            <div align="left">
+                  <input type="text" name="matricula"/>
+            </div></td></tr>
+
+            <tr><td align="right"><strong>Marca del vehiculo :</strong></td><td>
+            <div align="left">
+                  <input type="text" name="marca"/>
+            </div></td></tr>
+
+              <tr>
+
+              <td align="right"><strong>Indique el tipo de incidencia :</strong></td>
+
+              <td>
               <div align="left">
-                    <select name="taller">
-                      <option value="cocheRepair">Coche Repair</option>
-                      <option value="arreglaTodo">Arregla Todo</option>
-                      <option value="tallerPiston">Taller Piston</option>
+                    <select name="incidencia">
+                      <option value="compraCoche">Cambio de neumaticos</option>
+                      <option value="reparacionVehiculo">Cambio de aceite</option>
+                      <option value="compraCoche">Cambio de pastillas de freno</option>
+                      <option value="reparacionVehiculo">Cambio de parachoques</option>
+                      <option value="reparacionVehiculo">Cambio de luna frontal</option>
+                      <option value="compraCoche">Cambio de retrovisor</option>
+                      <option value="reparacionVehiculo">Limpieza del tubo de escape</option>
+                      <option value="compraCoche">Cambio liquido anti-congelante</option>
+                      <option value="reparacionVehiculo">Cambio pintura del coche</option>
+                      <option value="reparacionVehiculo">Cambio de llantas</option>
+                      <option value="reparacionVehiculo">Cambio de limpia parabrisas</option>
                       
                     </select>
-              </div></td></tr>
-              <tr><td align="right"><strong>Especifique el tipo de everia: </strong></td><td>
-              <div align="left">
-                    <textarea cols=50 rows=4 name="averia"></textarea>
-              </div></td></tr>
+              </div>
+              </td>
+              </tr>
+
               <tr ><td colspan="2"><div align="center"><strong>
             <input name="enviar" type="submit" id="enviar" value="Enviar"/>
             </strong></div></td></tr>
