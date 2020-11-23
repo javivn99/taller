@@ -10,7 +10,7 @@ $uname=$_REQUEST['uname'];
 $uapellidos=$_REQUEST['uapellidos'];
 $ufnac=$_REQUEST['ufnac'];
 $umatricula=$_REQUEST['umatricula'];
-
+//Mirar los pattern de form15 y copiarlos
 $mensaje = "Usuario registrado correctamente";
 echo "<script type='text/javascript'>alert('$mensaje');</script>
     
