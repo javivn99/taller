@@ -6,11 +6,14 @@ session_start();//primera sentencia para trabajar con sesiones
 if(isset($_REQUEST['btn_login']))//si has pulsado el boton login
 {
 $email=$_REQUEST['email'];
-    //declaro una variable de sesion
+//declaro una variable de sesion
 $_SESSION['email']=$_REQUEST['email'];    
 $pass=$_REQUEST['password'];
-if($email=="admin1@gmail.com" || $email=="admin2@gmail.com" || $email=="admin3@gmail.com" || $email=="admin4@gmail.com" || $email=="admin5@gmail.com" || $email=="admin6@gmail.com"){
-    header('Location:admin/aprincipal.php');//redirigir a otra pagina
+
+if(!preg_match("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$", $email)){
+    // Return Error - Invalid Email
+}else{
+    // Return Success - Valid Email
 }
 
 if($email!="admin1@gmail.com" || $email!="admin2@gmail.com" || $email!="admin3@gmail.com" || $email!="admin4@gmail.com" || $email!="admin5@gmail.com" || $email!="admin6@gmail.com"){

@@ -24,12 +24,12 @@ CREATE TABLE IF NOT EXISTS `taller`.`MECANICO` (
 ENGINE = InnoDB;
 
 INSERT INTO  `taller`.`MECANICO` (`DNI_M`, `NOMBRE`, `APELLIDOS`, `EMAIL_M`,  `CONTRASEÑA_M`, `F_NACIMIENTO`) VALUES
-('12549876S', 'EMILIO', 'NUÑEZ DE LA SIERRA', 'admin1@gmail.com','admin1', '1985-05-24'),
-('19865478E', 'RAUL', 'SAEZ HERNANDEZ', 'admin2@gmail.com','admin2', '1999-12-03'),
-('14783256A', 'SARA', 'REDONDO LOPEZ', 'admin3@gmail.com','admin3', '1974-08-14'),
-('10365487M', 'PAULA', 'CUADRADO SERRANO', 'admin4@gmail.com','admin4', '1988-01-01'),
-('12563048U', 'ARTURO', 'NIETO ROCHAS', 'admin5@gmail.com','admin5', '1992-11-13'),
-('12498654P', 'EZEQUIEL', 'FERNANDEZ ESPINOSA', 'admin6@gmail.com','admin6', '1995-07-05');
+('12549876S', 'EMILIO', 'NUÑEZ DE LA SIERRA', 'emilio@admin.com','admin', '1985-05-24'),
+('19865478E', 'RAUL', 'SAEZ HERNANDEZ', 'raul@admin.com','admin', '1999-12-03'),
+('14783256A', 'SARA', 'REDONDO LOPEZ', 'sara@admin.com','admin', '1974-08-14'),
+('10365487M', 'PAULA', 'CUADRADO SERRANO', 'paula@admin.com','admin', '1988-01-01'),
+('12563048U', 'ARTURO', 'NIETO ROCHAS', 'arturo@admin.com','admin', '1992-11-13'),
+('12498654P', 'EZEQUIEL', 'FERNANDEZ ESPINOSA', 'ezequiel@admin.com','admin', '1995-07-05');
 
 CREATE TABLE IF NOT EXISTS `taller`.`TALLER_MECANICO` (
   `NIF` INT(3),
