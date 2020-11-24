@@ -2,24 +2,25 @@
 session_start();//primera sentencia para trabajar con sesiones
 //las variables de session son globales al proyecto
 
+$base="taller";
+$mecanico="mecanico";
+$cliente="cliente";
 
 if(isset($_REQUEST['btn_login']))//si has pulsado el boton login
 {
-$email=$_REQUEST['email'];
+htmlspecialchars($email=$_REQUEST['email']);
 //declaro una variable de sesion
 $_SESSION['email']=$_REQUEST['email'];    
-$pass=$_REQUEST['password'];
+htmlspecialchars($pass=$_REQUEST['password']);
 
-if(!preg_match("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$", $email)){
+if(!preg_match("^\w+([\.-]?\w+)+(@admin.com)+$", $email)){
     // Return Error - Invalid Email
-}else{
+    header('Location:user/uprincipal.php');
+}
+if(!preg_match("^\w+([\.-]?\w+)+(@admin.com)+$", $email)) {
     // Return Success - Valid Email
+    header('Location:admin/aprincipal.php');
 }
-
-if($email!="admin1@gmail.com" || $email!="admin2@gmail.com" || $email!="admin3@gmail.com" || $email!="admin4@gmail.com" || $email!="admin5@gmail.com" || $email!="admin6@gmail.com"){
-    header('Location:user/uprincipal.php');//redirigir a otra pagina
-}
-    
 }
 else{
 echo'<!DOCTYPE html>
