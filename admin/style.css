@@ -373,13 +373,13 @@ h2.logo-text
 .menu li
 {
   margin: 0;
-  padding-right: 39px;
   border: 0;
   display: block;
   float: left;
   position: relative;
   z-index: 5;
   background: none;
+  width: 150px;
 }
 
 .menu li:hover
@@ -450,6 +450,7 @@ h2.logo-text
 .menu
 {
   padding: 0 0 0 0;
+  
 }
 
 .nav
@@ -529,7 +530,7 @@ h2.logo-text
 .menu a .t, .menu ul a, .menu a, .menu a:link, .menu a:visited, .menu a:hover
 {
   font-weight: bold;
-  text-align: left;
+  text-align: center;
   text-decoration: none;
   text-transform: uppercase;
 }
