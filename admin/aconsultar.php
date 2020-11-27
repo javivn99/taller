@@ -6,6 +6,7 @@ include 'head.php';
 $base="taller";
 $tabla="cliente_cita";
 
+
 //Variables del formulario
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 $dni = $_REQUEST['dni'];
@@ -16,7 +17,8 @@ mysqli_select_db($c,$base);
 
 if(isset($_REQUEST['btn_mostrar']))//si has pulsado el boton de enviar
 {
-  mysqli_query($c,"SELECT * FROM $tabla WHERE dni_c=$dni");
+  $consulta="SELECT * FROM $tabla WHERE (dni_c='$dni')";
+  $resultado = mysql_query($c, $consulta);
   
   if (mysqli_errno($c)==0){
     echo "<h3>Registro AÑADIDO</b></h3>";

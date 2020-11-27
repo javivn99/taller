@@ -1,4 +1,6 @@
 <?php
+include 'head.php';
+
 session_start();
 
 //Variables de las tablas
@@ -13,31 +15,9 @@ $num_cita = $_REQUEST['num_cita'];
 
 //Conectar con el usuario y la base
 $c=mysqli_connect("localhost","javier","root");
-mysqli_select_db($c,$base);
+mysqli_select_db($c,$base); 
 
 
-//Añadir a cliente_citas sus datos
-if(isset($_REQUEST['btn_borrar']))//si has pulsado el boton de enviar
-{
-  mysqli_query($c,"DELETE FROM $tabla WHERE (dni_c=$dni) AND (n_cita=$num_cita)");
-  
-  if (mysqli_errno($c)==0){
-    echo "<h3>Registro ELIMINADO</b></h3>";
-  }
-  else{
-    if (mysqli_errno($c)==1062){
-      echo "<h2>No se ha podido eliminar el registro</h2>";
-    }
-    else{
-      $numerror=mysqli_errno($c);
-      $descrerror=mysqli_error($c);
-      echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
-    }
-  }
-} 
-
-
-include 'head.php';
 
  print' 
             <strong>INTRODUCE EL Nº DE LA CITA<BR><BR></strong>
@@ -60,7 +40,27 @@ include 'head.php';
             </strong></div></td></tr>
         </table>
     </form>
-        </div>';
- include 'pie.php';
+        </div><br><br>';
 
- //Poner un alert que diga "Cita cancelada con exito"
+
+ //Añadir a cliente_citas sus datos
+if(isset($_REQUEST['btn_borrar']))//si has pulsado el boton de enviar
+{
+  mysqli_query($c,"DELETE FROM $tabla WHERE (dni_c='$dni') AND (n_cita='$num_cita')");
+  
+  if (mysqli_errno($c)==0){
+    echo "<h3>Registro ELIMINADO</b></h3>";
+  }
+  else{
+    if (mysqli_errno($c)==1062){
+      echo "<h2>No se ha podido eliminar el registro</h2>";
+    }
+    else{
+      $numerror=mysqli_errno($c);
+      $descrerror=mysqli_error($c);
+      echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
+    }
+  }
+}
+
+include 'pie.php';

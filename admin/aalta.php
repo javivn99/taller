@@ -16,30 +16,6 @@ $dni = $_REQUEST['dni'];
 $c=mysqli_connect("localhost","javier","root");
 mysqli_select_db($c,$base);
 
-
-//Añadir a cliente_citas sus datos
-if(isset($_REQUEST['btn_enviar']))//si has pulsado el boton de enviar
-{
-  mysqli_query($c,"INSERT INTO $tabla (dni_c, n_cita) VALUES ('$dni','$motivo')");
-  
-  if (mysqli_errno($c)==0){
-    echo "<h3>Registro AÑADIDO</b></h3>";
-  }
-  else{
-    if (mysqli_errno($c)==1062){
-      echo "<h2>No se ha podido añadir el registro</h2>";
-    }
-    else{
-      $numerror=mysqli_errno($c);
-      $descrerror=mysqli_error($c);
-      echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
-    }
-  }
-} 
-
-
-
-
                                              
  print' 
         <h2 class="postheader">FORMULARIO PARA PEDIR CITA</h2>
@@ -93,8 +69,30 @@ if(isset($_REQUEST['btn_enviar']))//si has pulsado el boton de enviar
 <div id="imagen1">
         
 
-        </div>        
+        </div><br><br>        
 ';
+
+//Añadir a cliente_citas sus datos
+if(isset($_REQUEST['btn_enviar']))//si has pulsado el boton de enviar
+{
+  mysqli_query($c,"INSERT INTO $tabla (dni_c, n_cita) VALUES ('$dni','$motivo')");
+  
+  if (mysqli_errno($c)==0){
+    echo "<h3>Registro AÑADIDO</b></h3>";
+  }
+  else{
+    if (mysqli_errno($c)==1062){
+      echo "<h2>No se ha podido añadir el registro</h2>";
+    }
+    else{
+      $numerror=mysqli_errno($c);
+      $descrerror=mysqli_error($c);
+      echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
+    }
+  }
+} 
+
+
 
  include 'pie.php';
 											
