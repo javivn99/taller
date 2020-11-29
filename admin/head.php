@@ -42,12 +42,8 @@ print'
                 			<a href="aborrar.php"><span class="l"></span><span class="r"></span><span class="t">Cancelar cita</span></a>
                 			
                         </li>
-                        <li>
-                			<a href="modificar.php"><span class="l"></span><span class="r"></span><span class="t">Cambiar cita</span></a>
-                			
-                		</li>
-                        <li>
-                			<a href="aconsultar.php"><span class="l"></span><span class="r"></span><span class="t">Consultar citas</span></a>
+                        <li class="consultaymodif">
+                			<a href="aconsultar.php"><span class="l"></span><span class="r"></span><span class="t">Consultar y/o Modificar</span></a>
                 			
                 		</li>
                                 
