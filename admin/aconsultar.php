@@ -37,8 +37,8 @@ print '
     </form>
         </div>';
 
-        if(isset($_REQUEST['btn_mostrar']))//si has pulsado el boton de enviar
-{
+if(isset($_REQUEST['btn_mostrar']))//si has pulsado el boton de enviar
+{ 
 
   $resultado=mysqli_query($c,"SELECT cliente_cita.DNI_C,cliente_cita.n_cita FROM cliente_cita WHERE (dni_c='$dni')");
   
@@ -49,17 +49,24 @@ print '
     echo "<td align=center>Nº de cita</td>";
     echo "<tr>";
 
+    echo "<form name='modificar' method=\"POST\" action='modificar.php'>";
+
     while($salida = mysqli_fetch_array($resultado)){
       for ($i=0;$i<2;$i++){
        if ($i==0){
          echo "<td>",$salida[$i],"</td>";
        }
        if ($i==1){
-         echo "<td><input type=text size=10 name=nom[$salida[0]] value=$salida[$i]></td>";
+         echo "<td><input type=text size=10 name=n_cita[$salida[0]] value=$salida[$i]></td>";
        }
       }
       echo "<tr>";
     }
+echo"
+    <td colspan=2 align=center><br><input type=submit value='Modificar'>
+</form></table>";
+
+
   }
   else{
     if (mysqli_errno($c)==1062){
@@ -71,6 +78,8 @@ print '
       echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
     }
   }
+  
 } 
+
 
 include 'pie.php';

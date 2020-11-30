@@ -43,12 +43,12 @@ print'
                 			
                         </li>
                         <li class="consultaymodif">
-                			<a href="aconsultar.php"><span class="l"></span><span class="r"></span><span class="t">Consultar y/o Modificar</span></a>
+                			<a href="aconsultar.php"><span class="l"></span><span class="r"></span><span class="t">Consult/Modif</span></a>
                 			
                 		</li>
                                 
                 		<li>
-                                <a href="aabout.php"><span class="l"></span><span class="r"></span><span class="t">About</span></a>
+                                <a href="aabout.php"><span class="l"></span><span class="r"></span><span class="t">Codigos cita</span></a>
                 		</li>
                 	</ul>
                 </div>
