@@ -9,6 +9,25 @@ Tags: fixed width, one column, valid XHTML, widgets
 */
 
 /* begin Page */
+.menu_citas ul {
+  list-style: none; /* Quita los puntos que pone por defecto a una lista */
+  padding: 15px;
+}
+
+.menu_citas li {
+  display: inline; /* Para ponerlo en horizontal hay que poner esta y esta de abajo */
+  float: left; /* Con esta */
+  background-color: #03439C;
+
+}
+
+.menu_citas li a {
+  display: block; /* Para poder clickar no solo en las letras sino tb en el espacio de alrededor */
+  padding: 10px;
+  text-decoration: none; /* Que no salgan subrayados los hipervinculos */
+  color: white;
+  border-right: 5px solid white;
+}
 
 #imagen{
     position:absolute;

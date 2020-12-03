@@ -36,7 +36,7 @@ print'
                 			<a href="aprincipal.php" class="active"><span class="l"></span><span class="r"></span><span class="t">Inicio</span></a>
                 		</li>
                         <li>
-                			<a href="aalta.php" class="active"><span class="l"></span><span class="r"></span><span class="t">Citas</span></a>
+                			<a href="citas.php" class="active"><span class="l"></span><span class="r"></span><span class="t">Citas</span></a>
                 		</li>
                 		<li>
                 			<a href="aborrar.php"><span class="l"></span><span class="r"></span><span class="t">Clientes</span></a>
@@ -45,12 +45,7 @@ print'
                         <li class="consultar">
                 			<a href="aconsultar.php"><span class="l"></span><span class="r"></span><span class="t">Mecanicos</span></a>
                 			
-                        </li>
-                        <li class="modificar">
-                			<a href="amodificar.php"><span class="l"></span><span class="r"></span><span class="t">Modificar</span></a>
-                			
-                		</li>
-                                
+                        </li>   
                 		<li>
                                 <a href="aabout.php"><span class="l"></span><span class="r"></span><span class="t">Codigos cita</span></a>
                 		</li>
