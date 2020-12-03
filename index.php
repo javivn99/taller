@@ -3,7 +3,7 @@ session_start();//primera sentencia para trabajar con sesiones
 //las variables de session son globales al proyecto
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 htmlspecialchars($email=$_REQUEST['email']);
-htmlspecialchars($pass=$_REQUEST['password']);
+htmlspecialchars($password=$_REQUEST['password']);
 
 
 $nombreServidor = "localhost";
@@ -22,28 +22,26 @@ if ($conn ->connect_error) {
 if(isset($_REQUEST['btn_login']))//si has pulsado el boton login
 {
 // MECANICO. Consulta segura para evitar inyecciones SQL.
-$sql1 = sprintf("SELECT * FROM mecanico WHERE email_m='%s' AND contraseña_m = '%s'", $conn -> escape_string ($email), $conn -> escape_string ($pass));
-$resultadoM = $conn->query($sql1);    
+$sql1 = "SELECT * FROM mecanico WHERE email_m='$email' AND contraseña_m = '$password'";
+$resultadoM = mysqli_query($conn, $sql1);
 
 //CLIENTE
-$sql2 = sprintf("SELECT * FROM cliente WHERE email_c='%s' AND contraseña_c = '%s'", $conn -> escape_string ($email), $conn -> escape_string ($pass));
-$resultadoC = $conn->query($sql2);  
+/*
+$sql2 = "SELECT * FROM cliente WHERE email_c='$email' AND contraseña_c = '$password'";
+$resultadoC = mysqli_query($conn, $sql2); */ 
 
-// Verificando si el usuario existe en la base de datos.
-if($resultadoM){
-    // Guardo en la sesión el email del usuario.
-    $_SESSION['email'] = $_REQUEST['email'];
-     
-    // Redirecciono al usuario a la página principal del sitio.
-    header('Location:admin/aprincipal.php');
+if($mostar=mysqli_fetch_array($sql1)==true){
+    while($mostar=mysqli_fetch_array($sql1)) {
+        $email2=$mostrar['email'];
+        $password2=$mostrar['password'];
+    }
+    if($email=="$email2" && $password=="$password2"){
+        header('Location:admin/aprincipal.php');
+    }
 }
-else if($resultadoC){
-    // Guardo en la sesión el email del usuario.
-    $_SESSION['email'] = $_REQUEST['email'];
-        
-    // Redirecciono al usuario a la página principal del sitio.
-    header('Location:user/uprincipal.php');
 
+} else {
+    print '<br><h4>Email o contraseña incorrectos</h4>';
 }
 
 /*
@@ -83,6 +81,7 @@ echo'<!DOCTYPE html>
             
                 <input class="boton" type="submit" value="Log in" name="btn_login">
             </div>
+            
         </div>
     </form>
 

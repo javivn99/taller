@@ -18,7 +18,7 @@ mysqli_select_db($c,$base);
 
 print '                              
         <div   class="postcontent"><form action="" method="post">
-            <table align="center" class="content-layout">
+            <table  class="content-layout">
 
               <tr><td align="right"><strong>Introduce tu DNI :</strong></td><td>
               <div align="left">
@@ -35,7 +35,7 @@ print '
               
         </table>
     </form>
-        </div>';
+        </div><br><br>';
 
 if(isset($_REQUEST['btn_mostrar']))//si has pulsado el boton de enviar
 { 
@@ -44,27 +44,57 @@ if(isset($_REQUEST['btn_mostrar']))//si has pulsado el boton de enviar
   
   if (mysqli_errno($c)==0){
     echo "<table align=center border=2 bgcolor='#F0FFFF'>";
-    echo "<td colspan=2 align=center>Datos solicitados</td><tr>";
-    echo "<td align=center>DNI</td>";
-    echo "<td align=center>Nº de cita</td>";
+    echo "<tr><td colspan=3 style='text-align:center; padding:5px;'><b>DATOS SOLICITADOS</b></td></tr>";
+    echo "<tr><td style='text-align: center; padding:5px;'><b>DNI</b></td>";
+    echo "<td style='text-align: center; padding:5px;'><b>Nº de cita</b></td>";
+    echo "<td style='text-align: center; padding:5px;'><b>Motivo</b></td></tr>";
     echo "<tr>";
-
-    echo "<form name='modificar' method=\"POST\" action='modificar.php'>";
 
     while($salida = mysqli_fetch_array($resultado)){
       for ($i=0;$i<2;$i++){
        if ($i==0){
-         echo "<td>",$salida[$i],"</td>";
+         echo "<td style='text-align:center; padding:5px;'>",$salida[$i],"</td>";
        }
        if ($i==1){
-         echo "<td><input type=text size=10 name=n_cita[$salida[0]] value=$salida[$i]></td>";
+         echo "<td style='text-align:center; padding:5px;'>",$salida[$i],"</td>";
+         if($salida[$i]==1){
+           echo "<td style='text-align:center; padding:5px;'>CAMBIO DE NEUMATICOS</td>";
+         }
+         if($salida[$i]==2){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO DE ACEITE</td>";
+        }
+        if($salida[$i]==3){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO DE PASTILLAS DE FRENO</td>";
+        }
+        if($salida[$i]==4){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO DE PARACHOQUES</td>";
+        }
+        if($salida[$i]==5){
+          echo "<td style='text-align:center; padding:5px;'>LUNA FRONTAL</td>";
+        }
+        if($salida[$i]==6){
+          echo "<td style='text-align:center; padding:5px;'>LIMPIEZA DEL TUBO DE ESCAPE</td>";
+        }
+        if($salida[$i]==7){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO LIQUIDO ANTI-CONGELANTE</td>";
+        }
+        if($salida[$i]==8){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO DE RETROVISOR</td>";
+        }
+        if($salida[$i]==9){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO DE PINTURA DEL COCHE</td>";
+        }
+        if($salida[$i]==10){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO DE LLANTAS</td>";
+        }
+        if($salida[$i]==11){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO DE LIMPIA PARABRISAS</td>";
+        }
        }
       }
-      echo "<tr>";
+      echo "</tr>";
     }
-echo"
-    <td colspan=2 align=center><br><input type=submit value='Modificar'>
-</form></table>";
+    echo"</form></table>";
 
 
   }
