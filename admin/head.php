@@ -36,14 +36,14 @@ print'
                 			<a href="aprincipal.php" class="active"><span class="l"></span><span class="r"></span><span class="t">Inicio</span></a>
                 		</li>
                         <li>
-                			<a href="aalta.php" class="active"><span class="l"></span><span class="r"></span><span class="t">Pedir cita</span></a>
+                			<a href="aalta.php" class="active"><span class="l"></span><span class="r"></span><span class="t">Citas</span></a>
                 		</li>
                 		<li>
-                			<a href="aborrar.php"><span class="l"></span><span class="r"></span><span class="t">Cancelar cita</span></a>
+                			<a href="aborrar.php"><span class="l"></span><span class="r"></span><span class="t">Clientes</span></a>
                 			
                         </li>
                         <li class="consultar">
-                			<a href="aconsultar.php"><span class="l"></span><span class="r"></span><span class="t">Consultar</span></a>
+                			<a href="aconsultar.php"><span class="l"></span><span class="r"></span><span class="t">Mecanicos</span></a>
                 			
                         </li>
                         <li class="modificar">

@@ -1,10 +1,5 @@
 <?php
-session_start();//primera sentencia para trabajar con sesiones
-//las variables de session son globales al proyecto
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
-htmlspecialchars($email=$_REQUEST['email']);
-htmlspecialchars($password=$_REQUEST['password']);
-
+session_start();
 
 $nombreServidor = "localhost";
 $nombreUsuario = "javier";
@@ -21,28 +16,95 @@ if ($conn ->connect_error) {
 
 if(isset($_REQUEST['btn_login']))//si has pulsado el boton login
 {
-// MECANICO. Consulta segura para evitar inyecciones SQL.
-$sql1 = "SELECT * FROM mecanico WHERE email_m='$email' AND contraseña_m = '$password'";
-$resultadoM = mysqli_query($conn, $sql1);
+    htmlspecialchars($email=$_REQUEST['email']);
+    htmlspecialchars($_SESSION['email']=$_REQUEST['email']);
+    htmlspecialchars($password=$_REQUEST['password']);
 
-//CLIENTE
-/*
-$sql2 = "SELECT * FROM cliente WHERE email_c='$email' AND contraseña_c = '$password'";
-$resultadoC = mysqli_query($conn, $sql2); */ 
+    if(empty($email) && empty($password)){
+        echo'<!DOCTYPE html>
 
-if($mostar=mysqli_fetch_array($sql1)==true){
-    while($mostar=mysqli_fetch_array($sql1)) {
-        $email2=$mostrar['email'];
-        $password2=$mostrar['password'];
+<html>
+<head>
+    <link href="index.css" rel="stylesheet" type="text/css">
+    <title>Pagina principal del taller</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <form>
+        <div class="container">
+            
+                <h1>Inicio de sesion</h1>
+            
+            
+                <label for="uname"><b>Email</b></label>
+                <input type="text" placeholder="Introduce tu email" name="email" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Introduce tu contraseña" name="password" required>
+                <a href="crearUsuario.php">¿Eres nuevo? Crea aqui una cuenta</a>
+            
+                <input class="boton" type="submit" value="Log in" name="btn_login">
+            </div>
+            <br><br>
+            <h4>Por favor, rellene todos los campos.</h4>
+            
+        </div>
+    </form>
+
+</body>
+</html>';
+    } else {
+        $sql = "SELECT * FROM mecanico WHERE email_m='$email' AND contraseña_m = '$password'";
+        $resultado = mysqli_query($conn, $sql);
+
+        if($mostar=mysqli_fetch_array($resultado)==true){
+            header('Location:admin/aprincipal.php');
+        } else {
+            $sql = "SELECT * FROM cliente WHERE email_c='$email' AND contraseña_c = '$password'";
+            $resultado = mysqli_query($conn, $sql);
+
+            if($mostar=mysqli_fetch_array($resultado)==true){
+                header('Location:user/uprincipal.php');
+            } else {
+                echo'<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="index.css" rel="stylesheet" type="text/css">
+    <title>Pagina principal del taller</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <form>
+        <div class="container">
+            
+                <h1>Inicio de sesion</h1>
+            
+            
+                <label for="uname"><b>Email</b></label>
+                <input type="text" placeholder="Introduce tu email" name="email" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Introduce tu contraseña" name="password" required>
+                <a href="crearUsuario.php">¿Eres nuevo? Crea aqui una cuenta</a>
+            
+                <input class="boton" type="submit" value="Log in" name="btn_login">
+                <br><br>
+            <h4>Usuario o contraseña incorrecta.</h4>
+            </div>
+            
+        </div>
+    </form>
+
+</body>
+</html>';
+            }
+        }
     }
-    if($email=="$email2" && $password=="$password2"){
-        header('Location:admin/aprincipal.php');
-    }
-}
-
-} else {
-    print '<br><h4>Email o contraseña incorrectos</h4>';
-}
 
 /*
 if(!preg_match("^\w+([\.-]?\w+)+(@admin.com)+$", $email)){
