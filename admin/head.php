@@ -1,11 +1,11 @@
 <?php
 
 print'
-    <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talleres de Javier</title>
 
     <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
@@ -39,7 +39,7 @@ print'
                 			<a href="citas.php" class="active"><span class="l"></span><span class="r"></span><span class="t">Citas</span></a>
                 		</li>
                 		<li>
-                			<a href="aborrar.php"><span class="l"></span><span class="r"></span><span class="t">Clientes</span></a>
+                			<a href="clientes.php"><span class="l"></span><span class="r"></span><span class="t">Clientes</span></a>
                 			
                         </li>
                         <li class="consultar">

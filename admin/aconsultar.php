@@ -20,7 +20,7 @@ print '
         <div   class="postcontent"><form action="" method="post">
             <table  class="content-layout">
 
-              <tr><td align="right"><strong>Introduce tu DNI :</strong></td><td>
+              <tr><td align="right"><strong>Introduce un DNI :</strong></td><td>
               <div align="left">
                     <input type="text" name="dni"/>
               </div></td></tr>
@@ -39,6 +39,20 @@ print '
 
 if(isset($_REQUEST['btn_mostrar']))//si has pulsado el boton de enviar
 { 
+
+  print '
+
+    <br><h2 class="seleccion">Seleccione una opcion</h2><br>
+    <div class="menu_citas">
+            <li><a href="aalta.php">Añadir cita</a></li>
+            <li><a href="aborrar.php">Cancelar cita</a></li>
+            <li><a href="amodificar.php">Modificar cita</a></li>
+            <li><a href="aconsultar.php">Consultar</a></li>
+    </div><br><br>
+
+
+';
+
 
   $resultado=mysqli_query($c,"SELECT cliente_cita.DNI_C,cliente_cita.n_cita FROM cliente_cita WHERE (dni_c='$dni')");
   
