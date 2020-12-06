@@ -1,0 +1,121 @@
+html {
+    margin: 0;
+    height: 100;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-image: url(../images/fibraCarbono.jpg);
+}
+/*HEAD.PHP*/
+
+/*CABECERA*/
+header {
+    margin-top: 0;
+    background-color: palegoldenrod;
+    text-align: center;
+    height: 130px;
+    width: 100%;
+    justify-content: center;
+    display: block;
+    top: 0;
+    font-family: 'Bungee Inline', cursive;
+}
+    #nombreTaller {
+        color: olive;
+        align-items: center;
+        
+    }
+
+/*BARRA DE NAVEGACION*/
+nav {
+    position: relative;
+    height: auto;
+    text-align: center;
+    padding: 0;
+}
+
+    nav ul {
+        padding: 0;
+        list-style: none; /* Quita los puntos que pone por defecto a una lista */
+        display: inline-block;
+        height: 100%;
+        
+    }
+
+    nav li {
+        display: inline; /* Para ponerlo en horizontal hay que poner esta y esta de abajo */
+        float: left; /* Con esta */
+        background-color: #03439C;
+        
+
+    }
+
+    nav li a {
+        display: block; /* Para poder clickar no solo en las letras sino tb en el espacio de alrededor */
+        padding: 10px;
+        text-decoration: none; /* Que no salgan subrayados los hipervinculos */
+        color: white;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    nav li a:hover {
+        background-color: white;
+        color: #03439C;
+}
+
+
+.nav {
+    position: relative;
+    height: auto;
+    text-align: center;
+}
+
+
+/*CITAS.PHP*/
+/*MENU DE SELECCION*/
+section {
+    height: 100%;
+}
+
+.seleccion {
+    text-align: center;
+    color: white;
+  }
+  
+  .menu_citas {
+    list-style: none; /* Quita los puntos que pone por defecto a una lista */
+    display: inline-block;
+  }
+  
+  .menu_citas li {
+    display: inline; /* Para ponerlo en horizontal hay que poner esta y esta de abajo */
+    float: left; /* Con esta */
+    background-color: #03439C;
+  
+  }
+  
+  .menu_citas li a {
+    display: block; /* Para poder clickar no solo en las letras sino tb en el espacio de alrededor */
+    padding: 10px;
+    text-decoration: none; /* Que no salgan subrayados los hipervinculos */
+    color: white;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .nav li a:hover {
+    background-color: white;
+    color: #03439C;
+}
+
+
+
+

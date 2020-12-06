@@ -18,9 +18,21 @@ mysqli_select_db($c,$base);
 
                                              
  print' 
-        <h2 class="postheader">FORMULARIO PARA PEDIR CITA</h2>
+
+ <div class="nav">
+        <h2 class="seleccion">Seleccione una opcion</h2><br>
+        <div class="menu_citas">
+                <li><a href="aalta.php">Añadir cita</a></li>
+                <li><a href="aborrar.php">Cancelar cita</a></li>
+                <li><a href="amodificar.php">Modificar cita</a></li>
+                <li><a href="aconsultar.php">Consultar</a></li>
+        </div>
+    </div>
+
+
+        <h2 class="seleccion">FORMULARIO PARA PEDIR CITA</h2>
                                      
-        <div   class="postcontent"><form action="" method="post">
+        <div>
             <table align="center" class="content-layout">
 
 
