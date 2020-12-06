@@ -18,25 +18,25 @@ mysqli_select_db($c,$base);
 if(isset($_REQUEST['btn_registro'])){
    //Variables del formulario
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
-$email = mysqli_real_escape_string($c, $_REQUEST['email']);
-$password = mysqli_real_escape_string($c, $_REQUEST['password']);
-$dni = mysqli_real_escape_string($c, $_REQUEST['dni']);
-$name = mysqli_real_escape_string($c, $_REQUEST['name']);
-$apellidos = mysqli_real_escape_string($c, $_REQUEST['apellidos']);
-$fnac = mysqli_real_escape_string($c, $_REQUEST['fnac']);
-$matricula = mysqli_real_escape_string($c, $_REQUEST['matricula']);
-$marca = mysqli_real_escape_string($c, $_REQUEST['marcacoche']);
+htmlspecialchars($email = $_REQUEST['email']);
+htmlspecialchars($password = $_REQUEST['password']);
+htmlspecialchars($dni = $_REQUEST['dni']);
+htmlspecialchars($name =$_REQUEST['name']);
+htmlspecialchars($apellidos = $_REQUEST['apellidos']);
+htmlspecialchars($fnac =$_REQUEST['fnac']);
+htmlspecialchars($matricula =$_REQUEST['matricula']);
+htmlspecialchars($marca = $_REQUEST['marca']);
 
     if(!preg_match("/^[a-zA-Z0-9._-]+[@admin]+\.([a-zA-Z]{2,4})+$/",$email)){
         if(preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})+$/",$email)){
-            mysqli_query($c,"INSERT INTO $vehiculo (matricula, marca) VALUES ('$matricula', '$marca')");
-            mysqli_query($c,"INSERT INTO $cliente (dni_c,nombre,apellidos,email_c,contraseña_c,f_nacimiento) VALUES ('$dni','$nombre','$apellidos','$email','$password','$fnac')");
+
+            mysqli_query($c,"INSERT INTO cliente, vehiculo (cliente.dni_c,cliente.nombre,cliente.apellidos,cliente.email_c,cliente.contraseña_c,cliente.f_nacimiento,vehiculo.matricula, vehiculo.marca) VALUES ('$dni','$nombre','$apellidos','$email','$password','$fnac','$matricula', '$marca')");
         
             if (mysqli_errno($c)==0){
-                echo "<br><br><h2>USUARIO AÑADIDO</b></H2><br><br>";
+                echo "<h4 style='color:green;'>Usuario añadido correctamente</h4>";
             }else{
                 if (mysqli_errno($c)==1062){
-                    echo "<h2>No ha podido añadirse el registro<br>Ya existe un campo con estos datos</h2>";
+                    echo "<h4 style='color:red;'>Error al añadir usuario</h4>";
                 }else{ 
                     $numerror=mysqli_errno($c);
                     $descrerror=mysqli_error($c);
@@ -44,10 +44,8 @@ $marca = mysqli_real_escape_string($c, $_REQUEST['marcacoche']);
                 }
             }
         }else{
-            echo "EL FORMATO DEL EMAIL NO ES CORRECTO";
+            echo "<h4 style='color:red;'>Introduce un email correcto</h4>";
         }
-    }else{
-        echo "NO ES POSIBLE CREAR UN USUARIO CLIENTE COMO ADMINISTRADOR";
     }
 
     mysqli_close($c); 

@@ -8,9 +8,7 @@ $base="taller";
 $tabla="cliente_cita";
 
 //Variables del formulario
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
-$dni = $_REQUEST['dni'];
-$num_cita = $_REQUEST['num_cita'];
+
 
 
 //Conectar con el usuario y la base
@@ -46,6 +44,9 @@ mysqli_select_db($c,$base);
  //Añadir a cliente_citas sus datos
 if(isset($_REQUEST['btn_borrar']))//si has pulsado el boton de enviar
 {
+  error_reporting(E_ERROR | E_WARNING | E_PARSE);
+$dni = $_REQUEST['dni'];
+$num_cita = $_REQUEST['num_cita'];
   mysqli_query($c,"DELETE FROM $tabla WHERE (dni_c='$dni') AND (n_cita='$num_cita')");
   
   if (mysqli_errno($c)==0){
