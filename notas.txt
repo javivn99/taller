@@ -1,0 +1,2 @@
+EN ADMIN:
+    -Citas: En borrar y modificar citas. Si pongo un DNI bien pero me invento el nº de las citas no da error.

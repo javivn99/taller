@@ -1,0 +1,25 @@
+.seleccion {
+    text-align: center;
+    align-items: center;
+  }
+  
+  .menu_citas {
+    display: flex;
+    margin: center;
+  }
+  
+  .menu_citas li {
+    list-style: none;
+    display: inline; /* Para ponerlo en horizontal hay que poner esta y esta de abajo */
+    float: left; /* Con esta */
+    background-color: #03439C;
+  
+  }
+  
+  .menu_citas li a {
+    display: block; /* Para poder clickar no solo en las letras sino tb en el espacio de alrededor */
+    padding: 10px;
+    text-decoration: none; /* Que no salgan subrayados los hipervinculos */
+    color: white;
+    font-size: 16px;
+  }

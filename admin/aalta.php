@@ -8,7 +8,6 @@ $tabla="cliente_cita";
 
 //Variables del formulario
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
-$fecha = $_REQUEST['fecha'];
 $motivo = $_REQUEST['motivo'];
 $dni = $_REQUEST['dni'];
 
@@ -36,8 +35,6 @@ mysqli_select_db($c,$base);
           
             <strong>Introduzca su DNI :</strong><input type="text" name="dni"/><br><br>
 
-            <strong>Fecha que desea :</strong><input type="date" name="fecha"/><br><br>
-
             <strong>Indique el motivo de la cita :</strong>
 
                     <select name="motivo">
@@ -53,6 +50,10 @@ mysqli_select_db($c,$base);
                       <option value="9">Cambio pintura del coche</option>
                       <option value="10">Cambio de llantas</option>
                       <option value="11">Cambio de limpia parabrisas</option>
+                      <option value="12">Coche de sustitucion</option>
+                      <option value="13">Pasar ITV</option>
+                      <option value="14">Limpieza de coche</option>
+                      <option value="15">Otro</option>
                       
                     </select><br><br>
 
@@ -63,21 +64,32 @@ mysqli_select_db($c,$base);
 if(isset($_REQUEST['btn_enviar']))//si has pulsado el boton de enviar
 {
   
-  mysqli_query($c,"INSERT INTO $tabla (dni_c, n_cita) VALUES ('$dni','$motivo')");
+  $sql="SELECT * FROM cliente WHERE dni_c='$dni'";
+    $result=mysqli_query($c,$sql);
+    $mostrar=mysqli_fetch_array($result);
+
+    if($mostrar==true){
+
+      mysqli_query($c,"INSERT INTO $tabla (dni_c, n_cita) VALUES ('$dni','$motivo')");
+      
+      if (mysqli_errno($c)==0){
+        echo "<h3 style='color:green;'>Cita añadida</b></h3>";
+      }
+      else{
+        if (mysqli_errno($c)==1062){
+          echo "<h2  style='color:red;'>No se ha podido añadir la cita</h2>";
+        }
+        else{
+          $numerror=mysqli_errno($c);
+          $descrerror=mysqli_error($c);
+          echo "<h4 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h4>  <br>";
+        }
+  }
+}else{
+    echo "<h4 style='color:red;'>No existe un cliente con ese DNI.</h4>";
+}
+mysqli_close($c);   
   
-  if (mysqli_errno($c)==0){
-    echo "<h3 style='color:green;'>Cita añadida</b></h3>";
-  }
-  else{
-    if (mysqli_errno($c)==1062){
-      echo "<h2  style='color:red;'>No se ha podido añadir la cita</h2>";
-    }
-    else{
-      $numerror=mysqli_errno($c);
-      $descrerror=mysqli_error($c);
-      echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
-    }
-  }
 } 
 
 

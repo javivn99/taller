@@ -47,21 +47,33 @@ if(isset($_REQUEST['btn_borrar']))//si has pulsado el boton de enviar
   error_reporting(E_ERROR | E_WARNING | E_PARSE);
 $dni = $_REQUEST['dni'];
 $num_cita = $_REQUEST['num_cita'];
-  mysqli_query($c,"DELETE FROM $tabla WHERE (dni_c='$dni') AND (n_cita='$num_cita')");
-  
-  if (mysqli_errno($c)==0){
-    echo "<h3  style='color:green;'>Cita eliminada</b></h3>";
-  }
-  else{
-    if (mysqli_errno($c)==1062){
-      echo "<h2  style='color:red;'>No se ha podido cancelar la cita</h2>";
-    }
-    else{
-      $numerror=mysqli_errno($c);
-      $descrerror=mysqli_error($c);
-      echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
-    }
-  }
+
+    //Compruebo si existe el dni
+    $sql="SELECT * FROM cliente WHERE dni_c='$dni'";
+    $result=mysqli_query($c,$sql);
+    $mostrar=mysqli_fetch_array($result);
+
+    if($mostrar==true){
+
+          mysqli_query($c,"DELETE FROM $tabla WHERE (dni_c='$dni') AND (n_cita='$num_cita')");
+          
+          if (mysqli_errno($c)==0){
+            echo "<h3  style='color:green;'>Cita eliminada</b></h3>";
+          }
+          else{
+            if (mysqli_errno($c)==1062){
+              echo "<h4  style='color:red;'>No se ha podido cancelar la cita</h4>";
+            }
+            else{
+              $numerror=mysqli_errno($c);
+              $descrerror=mysqli_error($c);
+              echo "<h4 style='color:red;'>e ha producido un error nº $numerror que corresponde a: $descrerror </h4> <br>";
+            }
+          }
+}else{
+  echo "<h4 style='color:red;'>No existe ningun cliente con ese DNI.</h4>";
+}
+mysqli_close($c); 
 }
 
 include 'pie.php';

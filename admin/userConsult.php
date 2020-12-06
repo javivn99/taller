@@ -40,21 +40,27 @@ print '
 
 if(isset($_REQUEST['btn']))//si has pulsado el boton de enviar
 { 
-  $resultado=mysqli_query($c,"SELECT dni_c,nombre,apellidos,email_c,f_nacimiento,matricula FROM $tabla WHERE (dni_c='$dni')");
+
+  $sql="SELECT * FROM cliente WHERE dni_c='$dni'";
+    $result=mysqli_query($c,$sql);
+    $mostrar=mysqli_fetch_array($result);
+
+    if($mostrar==true){
+
+  $resultado=mysqli_query($c,"SELECT dni_c,nombre,apellidos,email_c,matricula FROM $tabla WHERE (dni_c='$dni')");
   
   if (mysqli_errno($c)==0){
     echo "<table align=center border=2 bgcolor='#03439C'>";
-    echo "<tr><td colspan=6 style='text-align:center; padding:5px;'><b>DATOS DEL CLIENTE</b></td></tr>";
+    echo "<tr><td colspan=5 style='text-align:center; padding:5px;'><b>DATOS DEL CLIENTE</b></td></tr>";
     echo "<tr><td style='text-align: center; padding:5px;'><b>DNI</b></td>";
     echo "<td style='text-align: center; padding:5px;'><b>Nombre</b></td>";
     echo "<td style='text-align: center; padding:5px;'><b>Apellidos</b></td>";
     echo "<td style='text-align: center; padding:5px;'><b>Email</b></td>";
-    echo "<td style='text-align: center; padding:5px;'><b>Fecha de nacimiento</b></td>";
     echo "<td style='text-align: center; padding:5px;'><b>Matricula</b></td>";
     echo "</tr><tr>";
 
     while($salida = mysqli_fetch_array($resultado)){
-      for ($i=0;$i<6;$i++){
+      for ($i=0;$i<5;$i++){
        if ($i==0){
          echo "<td style='text-align:center; padding:5px;'>",$salida[$i],"</td>";
        }
@@ -68,9 +74,6 @@ if(isset($_REQUEST['btn']))//si has pulsado el boton de enviar
         echo "<td style='text-align:center; padding:5px;'>",$salida[$i],"</td>";
       }
       if ($i==4){
-        echo "<td style='text-align:center; padding:5px;'>",$salida[$i],"</td>";
-      }
-      if ($i==5){
         echo "<td style='text-align:center; padding:5px;'>",$salida[$i],"</td>";
       }
     }
@@ -82,7 +85,7 @@ if(isset($_REQUEST['btn']))//si has pulsado el boton de enviar
   }
   else{
     if (mysqli_errno($c)==1062){
-      echo "<h2>No se ha podido añadir el registro</h2>";
+      echo "<h2>No se puede mostrar esa consulta</h2>";
     }
     else{
       $numerror=mysqli_errno($c);
@@ -90,21 +93,23 @@ if(isset($_REQUEST['btn']))//si has pulsado el boton de enviar
       echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
     }
   }
+}else{
+  echo "<h4 style='color:red;'>No existe un cliente con ese DNI.</h4>";
+}
   
 } 
 
 if(isset($_REQUEST['btn_todos']))//si has pulsado el boton de enviar
 { 
-    $resultado=mysqli_query($c,"SELECT dni_c,nombre,apellidos,email_c,f_nacimiento,matricula FROM $tabla");
+    $resultado=mysqli_query($c,"SELECT dni_c,nombre,apellidos,email_c,matricula FROM $tabla");
   
   if (mysqli_errno($c)==0){
     echo "<table align=center border=2 bgcolor='#03439C'>";
-    echo "<tr><td colspan=6 style='text-align:center; padding:5px;'><b>DATOS DEL CLIENTE</b></td></tr>";
+    echo "<tr><td colspan=5 style='text-align:center; padding:5px;'><b>DATOS DEL CLIENTE</b></td></tr>";
     echo "<tr><td style='text-align: center; padding:5px;'><b>DNI</b></td>";
     echo "<td style='text-align: center; padding:5px;'><b>Nombre</b></td>";
     echo "<td style='text-align: center; padding:5px;'><b>Apellidos</b></td>";
     echo "<td style='text-align: center; padding:5px;'><b>Email</b></td>";
-    echo "<td style='text-align: center; padding:5px;'><b>Fecha de nacimiento</b></td>";
     echo "<td style='text-align: center; padding:5px;'><b>Matricula</b></td>";
     echo "</tr><tr>";
 
@@ -123,9 +128,6 @@ if(isset($_REQUEST['btn_todos']))//si has pulsado el boton de enviar
         echo "<td style='text-align:center; padding:5px;'>",$salida[$i],"</td>";
       }
       if ($i==4){
-        echo "<td style='text-align:center; padding:5px;'>",$salida[$i],"</td>";
-      }
-      if ($i==5){
         echo "<td style='text-align:center; padding:5px;'>",$salida[$i],"</td>";
       }
     }

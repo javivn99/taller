@@ -36,10 +36,17 @@ print '
 
 <br>
 
-<button name="btn_mostrar">Mostrar</button><br><br>';
+<button name="btn_mostrar">Mostrar</button><button name="btn_todos">Mostrar todas</button><br><br>';
 
 if(isset($_REQUEST['btn_mostrar']))//si has pulsado el boton de enviar
 { 
+
+  $sql="SELECT * FROM cliente WHERE dni_c='$dni'";
+    $result=mysqli_query($c,$sql);
+    $mostrar=mysqli_fetch_array($result);
+
+    if($mostrar==true){
+
   $resultado=mysqli_query($c,"SELECT cliente_cita.DNI_C,cliente_cita.n_cita FROM cliente_cita WHERE (dni_c='$dni')");
   
   if (mysqli_errno($c)==0){
@@ -90,13 +97,23 @@ if(isset($_REQUEST['btn_mostrar']))//si has pulsado el boton de enviar
         if($salida[$i]==11){
           echo "<td style='text-align:center; padding:5px;'>CAMBIO DE LIMPIA PARABRISAS</td>";
         }
+        if($salida[$i]==12){
+          echo "<td style='text-align:center; padding:5px;'>COCHE DE SUSTITUCION</td>";
+        }
+        if($salida[$i]==13){
+          echo "<td style='text-align:center; padding:5px;'>PASAR ITV</td>";
+        }
+        if($salida[$i]==14){
+          echo "<td style='text-align:center; padding:5px;'>LIMPIEZA DE COCHE</td>";
+        }
+        if($salida[$i]==15){
+          echo "<td style='text-align:center; padding:5px;'>OTROS</td>";
+        }
        }
       }
       echo "</tr>";
     }
     echo"</form></table>";
-
-
   }
   else{
     if (mysqli_errno($c)==1062){
@@ -108,8 +125,92 @@ if(isset($_REQUEST['btn_mostrar']))//si has pulsado el boton de enviar
       echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
     }
   }
+}else{
+  echo "<h4 style='color:red;'>No existe un cliente con ese DNI.</h4>";
+}
   
 } 
 
+if(isset($_REQUEST['btn_todos']))//si has pulsado el boton de enviar
+{
+  $resultado=mysqli_query($c,"SELECT cliente_cita.DNI_C,cliente_cita.n_cita FROM cliente_cita");
 
+  
+  if (mysqli_errno($c)==0){
+    echo "<table align=center border=2 bgcolor='#03439C'>";
+    echo "<tr><td colspan=3 style='text-align:center; padding:5px;'><b>DATOS SOLICITADOS</b></td></tr>";
+    echo "<tr><td style='text-align: center; padding:5px;'><b>DNI</b></td>";
+    echo "<td style='text-align: center; padding:5px;'><b>Nº de cita</b></td>";
+    echo "<td style='text-align: center; padding:5px;'><b>Motivo</b></td></tr>";
+    echo "<tr>";
+
+    while($salida = mysqli_fetch_array($resultado)){
+      for ($i=0;$i<2;$i++){
+       if ($i==0){
+         echo "<td style='text-align:center; padding:5px;'>",$salida[$i],"</td>";
+       }
+       if ($i==1){
+         echo "<td style='text-align:center; padding:5px;'>",$salida[$i],"</td>";
+         if($salida[$i]==1){
+           echo "<td style='text-align:center; padding:5px;'>CAMBIO DE NEUMATICOS</td>";
+         }
+         if($salida[$i]==2){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO DE ACEITE</td>";
+        }
+        if($salida[$i]==3){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO DE PASTILLAS DE FRENO</td>";
+        }
+        if($salida[$i]==4){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO DE PARACHOQUES</td>";
+        }
+        if($salida[$i]==5){
+          echo "<td style='text-align:center; padding:5px;'>LUNA FRONTAL</td>";
+        }
+        if($salida[$i]==6){
+          echo "<td style='text-align:center; padding:5px;'>LIMPIEZA DEL TUBO DE ESCAPE</td>";
+        }
+        if($salida[$i]==7){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO LIQUIDO ANTI-CONGELANTE</td>";
+        }
+        if($salida[$i]==8){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO DE RETROVISOR</td>";
+        }
+        if($salida[$i]==9){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO DE PINTURA DEL COCHE</td>";
+        }
+        if($salida[$i]==10){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO DE LLANTAS</td>";
+        }
+        if($salida[$i]==11){
+          echo "<td style='text-align:center; padding:5px;'>CAMBIO DE LIMPIA PARABRISAS</td>";
+        }
+        if($salida[$i]==12){
+          echo "<td style='text-align:center; padding:5px;'>COCHE DE SUSTITUCION</td>";
+        }
+        if($salida[$i]==13){
+          echo "<td style='text-align:center; padding:5px;'>PASAR ITV</td>";
+        }
+        if($salida[$i]==14){
+          echo "<td style='text-align:center; padding:5px;'>LIMPIEZA DE COCHE</td>";
+        }
+        if($salida[$i]==15){
+          echo "<td style='text-align:center; padding:5px;'>OTROS</td>";
+        }
+       }
+      }
+      echo "</tr>";
+    }
+    echo"</form></table>";
+  }
+  else{
+    if (mysqli_errno($c)==1062){
+      echo "<h2>No se ha podido añadir el registro</h2>";
+    }
+    else{
+      $numerror=mysqli_errno($c);
+      $descrerror=mysqli_error($c);
+      echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
+    }
+  }
+}
 include 'pie.php';

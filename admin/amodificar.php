@@ -49,21 +49,31 @@ print '
 if(isset($_REQUEST['btn_cambiar']))//si has pulsado el boton de enviar
 { 
 
-  $resultado=mysqli_query($c,"UPDATE cliente_cita SET n_cita='$citaNueva' WHERE (dni_c='$dni') AND (n_cita='$citaAntigua')");
-  
-  if (mysqli_errno($c)==0){
-    echo "<h4 style='color:green;'>Cita modificada correctamente</h4>";
+  $sql="SELECT * FROM cliente WHERE dni_c='$dni'";
+  $result=mysqli_query($c,$sql);
+  $mostrar=mysqli_fetch_array($result);
+
+  if($mostrar==true){
+
+        $resultado=mysqli_query($c,"UPDATE cliente_cita SET n_cita='$citaNueva' WHERE (dni_c='$dni') AND (n_cita='$citaAntigua')");
+        
+        if (mysqli_errno($c)==0){
+          echo "<h4 style='color:green;'>Cita modificada correctamente</h4>";
+        }
+        else{
+          if (mysqli_errno($c)==1062){
+            echo "<h4 style='color:red;'>No se ha podido añadir el registro</h4>";
+          }
+          else{
+            $numerror=mysqli_errno($c);
+            $descrerror=mysqli_error($c);
+            echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
+          }
+        }
+  }else{
+    echo "<h4 style='color:red;'>No existe un cliente con ese DNI.</h4>";
   }
-  else{
-    if (mysqli_errno($c)==1062){
-      echo "<h4 style='color:red;'>No se ha podido añadir el registro</h4>";
-    }
-    else{
-      $numerror=mysqli_errno($c);
-      $descrerror=mysqli_error($c);
-      echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
-    }
-  }
+mysqli_close($c); 
   
 } 
 

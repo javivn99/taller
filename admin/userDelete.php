@@ -4,8 +4,7 @@ session_start();
 include 'head.php';
 //Variables de las tablas
 $base="taller";
-$cliente="cliente";
-$vehiculo="vehiculo";
+$tabla="cliente";
 
 //Conectar con el usuario y la base
 $c=mysqli_connect("localhost","javier","root");
@@ -29,34 +28,38 @@ print'
                                         
            <div class="formPedirCita"><form  class="formMod" action="" method="post">
              
-           <label for="uemail"><b>Email :</b></label>
-           <input type="text" placeholder="Introduce su email" name="email" required><br><br>
-   
-           <label for="umatricula"><b>Matricula :</b></label>
-           <input type="text" placeholder="Introduce la matricula de tu vehiculo" name="matricula" required><br><br>
+           <label for="uemail"><b>DNI :</b></label>
+           <input type="text" placeholder="Introduce su DNI" name="dni" required><br><br>
 
            <button name="btn_eliminar">Eliminar</button><br><br>';
 
 if(isset($_REQUEST['btn_eliminar'])){
 
     error_reporting(E_ERROR | E_WARNING | E_PARSE);
-    htmlspecialchars($email=$_REQUEST['email']);
-    htmlspecialchars($matricula=$_REQUEST['matricula']);
-    
-    mysqli_query($c,"DELETE FROM $vehiculo  WHERE (matricula='$matricula')");
-    mysqli_query($c,"DELETE FROM $cliente  WHERE (dni_c='$dni')");
+    htmlspecialchars($dni=$_REQUEST['dni']);
 
-    if (mysqli_errno($c)==0){
-        echo "<h4 style='color:green;'>Cliente eliminado</h4>"; 
-    }else{ 
-        if (mysqli_errno($c)==1062){
-            echo "<h4 style='color:red;'>No ha podido eliminarse al cliente<br>No hay ningun usuario asociado a ese DNI</h4>"; 
-        }else{  
-            $numerror=mysqli_errno($c); 
-            $descrerror=mysqli_error($c); 
-            echo "<h4 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h4>"; 
-        } 
+    $sql="SELECT * FROM cliente WHERE dni_c='$dni'";
+    $result=mysqli_query($c,$sql);
+    $mostrar=mysqli_fetch_array($result);
+
+    if($mostrar==true){
+
+        mysqli_query($c,"DELETE FROM $tabla  WHERE (dni_c='$dni')");
+
+        if (mysqli_errno($c)==0){
+            echo "<h4 style='color:green;'>Cliente eliminado</h4>"; 
+        }else{ 
+            if (mysqli_errno($c)==1062){
+                echo "<h4 style='color:red;'>No ha podido eliminarse al cliente</h4>"; 
+            }else{  
+                $numerror=mysqli_errno($c); 
+                $descrerror=mysqli_error($c); 
+                echo "<h4 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h4>"; 
+            } 
+        }
     
+    }else{
+        echo "<h4 style='color:red;'>No existe un cliente con ese DNI.</h4>";
     }
     mysqli_close($c);    
 }
