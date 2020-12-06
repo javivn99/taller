@@ -18,8 +18,21 @@ $c=mysqli_connect("localhost","javier","root");
 mysqli_select_db($c,$base);
 
 
-print '                              
-        <div   class="postcontent"><form action="" method="post">
+print '      
+
+<div class="nav">
+<h2 class="seleccion">Seleccione una opcion</h2><br>
+<div class="menu_citas">
+        <li><a href="aalta.php">Añadir cita</a></li>
+        <li><a href="aborrar.php">Cancelar cita</a></li>
+        <li><a href="amodificar.php">Modificar cita</a></li>
+        <li><a href="aconsultar.php">Consultar</a></li>
+</div>
+</div>
+
+
+<h2 class="seleccion">FORMULARIO PARA MODIFICAR CITA</h2><br>
+        <div  ><form  class="formMod" action="" method="post">
             
           <strong>Introduce tu DNI :</strong><input type="text" name="dni"/><br><br>
         

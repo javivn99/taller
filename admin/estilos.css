@@ -14,7 +14,6 @@ body {
 /*CABECERA*/
 header {
     margin-top: 0;
-    background-color: palegoldenrod;
     text-align: center;
     height: 130px;
     width: 100%;
@@ -23,11 +22,12 @@ header {
     top: 0;
     font-family: 'Bungee Inline', cursive;
 }
-    #nombreTaller {
-        color: olive;
+    #nombreTaller, #eslogan {
+        color: white;
         align-items: center;
         
     }
+
 
 /*BARRA DE NAVEGACION*/
 nav {
@@ -117,5 +117,14 @@ section {
 }
 
 
+/*FORMULARIOS CLIENTES*/
+.formPedirCita{
+    color: white;
+}
+
+form {
+    color: white;
+    text-align: center;
+}
 
 

@@ -32,27 +32,14 @@ mysqli_select_db($c,$base);
 
         <h2 class="seleccion">FORMULARIO PARA PEDIR CITA</h2>
                                      
-        <div>
-            <table align="center" class="content-layout">
+        <div class="formPedirCita"><form  class="formMod" action="" method="post">
+          
+            <strong>Introduzca su DNI :</strong><input type="text" name="dni"/><br><br>
 
+            <strong>Fecha que desea :</strong><input type="date" name="fecha"/><br><br>
 
-            <tr><td align="right"><strong>Introduzca su DNI :</strong></td><td>
-            <div align="left">
-                  <input type="text" name="dni"/>
-            </div></td></tr>
+            <strong>Indique el motivo de la cita :</strong>
 
-
-            <tr><td align="right"><strong>Fecha que desea :</strong></td><td>
-            <div align="left">
-                  <input type="date" name="fecha"/>
-            </div></td></tr>
-
-              <tr>
-
-              <td align="right"><strong>Indique el motivo de la cita :</strong></td>
-
-              <td>
-              <div align="left">
                     <select name="motivo">
                     
                       <option selected value="1">Cambio de neumaticos</option>
@@ -67,34 +54,23 @@ mysqli_select_db($c,$base);
                       <option value="10">Cambio de llantas</option>
                       <option value="11">Cambio de limpia parabrisas</option>
                       
-                    </select>
-              </div>
-              </td>
-              </tr>
+                    </select><br><br>
 
-              <tr ><td colspan="2"><div align="center"><strong>
-            <input name="btn_enviar" type="submit" id="btn_enviar" value="Enviar"/>
-            </strong></div></td></tr>
-        </table>
-    </form>
-        </div>
-<div id="imagen1">
-        
+                    <button name="btn_enviar">Solicitar</button><br><br>';       
 
-        </div><br><br>        
-';
 
 //Añadir a cliente_citas sus datos
 if(isset($_REQUEST['btn_enviar']))//si has pulsado el boton de enviar
 {
+  
   mysqli_query($c,"INSERT INTO $tabla (dni_c, n_cita) VALUES ('$dni','$motivo')");
   
   if (mysqli_errno($c)==0){
-    echo "<h3>Registro AÑADIDO</b></h3>";
+    echo "<h3 style='color:green;'>Cita añadida</b></h3>";
   }
   else{
     if (mysqli_errno($c)==1062){
-      echo "<h2>No se ha podido añadir el registro</h2>";
+      echo "<h2  style='color:red;'>No se ha podido añadir la cita</h2>";
     }
     else{
       $numerror=mysqli_errno($c);

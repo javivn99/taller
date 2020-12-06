@@ -20,27 +20,27 @@ mysqli_select_db($c,$base);
 
 
  print' 
-            <strong>INTRODUCE EL Nº DE LA CITA<BR><BR></strong>
+
+ <div class="nav">
+        <h2 class="seleccion">Seleccione una opcion</h2><br>
+        <div class="menu_citas">
+                <li><a href="aalta.php">Añadir cita</a></li>
+                <li><a href="aborrar.php">Cancelar cita</a></li>
+                <li><a href="amodificar.php">Modificar cita</a></li>
+                <li><a href="aconsultar.php">Consultar</a></li>
+        </div>
+    </div>
+            
+    <h2 class="seleccion">FORMULARIO PARA CANCELAR CITA</h2>
                                      
-        <div   class="postcontent"><form action="" method="post">
+        <div  class="formPedirCita"><form  class="formMod" action="" method="post">
             <table align="center" class="content-layout">
               
-            <tr><td align="right"><strong>Introduce tu DNI :</strong></td><td>
-            <div align="left">
-                  <input type="text" name="dni"/>
-            </div></td></tr>
+            <strong>Introduce el DNI :</strong><input type="text" name="dni"/><br><br>
 
-              <tr><td align="right"><strong>Num de Cita :</strong></td><td>
-              <div align="left">
-                    <input type="text" name="num_cita"/>
-              </div></td></tr>
+            <strong>Introduce el numero de cita :</strong><input type="text" name="num_cita"/><br><br>
               
-              <tr ><td colspan="2"><div align="center"><strong>
-            <input name="btn_borrar" type="submit" id="borrar" value="Cancelar"/>
-            </strong></div></td></tr>
-        </table>
-    </form>
-        </div><br><br>';
+            <button name="btn_borrar">Cancelar</button><br><br>';
 
 
  //Añadir a cliente_citas sus datos
@@ -49,11 +49,11 @@ if(isset($_REQUEST['btn_borrar']))//si has pulsado el boton de enviar
   mysqli_query($c,"DELETE FROM $tabla WHERE (dni_c='$dni') AND (n_cita='$num_cita')");
   
   if (mysqli_errno($c)==0){
-    echo "<h3>Registro ELIMINADO</b></h3>";
+    echo "<h3  style='color:green;'>Cita eliminada</b></h3>";
   }
   else{
     if (mysqli_errno($c)==1062){
-      echo "<h2>No se ha podido eliminar el registro</h2>";
+      echo "<h2  style='color:red;'>No se ha podido cancelar la cita</h2>";
     }
     else{
       $numerror=mysqli_errno($c);

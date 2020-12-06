@@ -16,48 +16,34 @@ $c=mysqli_connect("localhost","javier","root");
 mysqli_select_db($c,$base);
 
 
-print '                              
-        <div   class="postcontent"><form action="" method="post">
-            <table  class="content-layout">
+print '    
 
-              <tr><td align="right"><strong>Introduce un DNI :</strong></td><td>
-              <div align="left">
-                    <input type="text" name="dni"/>
-              </div></td></tr>
+<div class="nav">
+<h2 class="seleccion">Seleccione una opcion</h2><br>
+<div class="menu_citas">
+        <li><a href="aalta.php">Añadir cita</a></li>
+        <li><a href="aborrar.php">Cancelar cita</a></li>
+        <li><a href="amodificar.php">Modificar cita</a></li>
+        <li><a href="aconsultar.php">Consultar</a></li>
+</div>
+</div>
 
-              <tr >
-              <td colspan="2"><div align="center"><strong>
-                <input name="btn_mostrar" type="submit" id="listar" value="Mostrar"/>
-                </strong>
-                </div>
-              </td>
-            </tr>
-              
-        </table>
-    </form>
-        </div><br><br>';
+<h2 class="seleccion">FORMULARIO PARA CONSULTAR CITAS</h2><br>
+<div  ><form  class="formMod" action="" method="post">
+            
+<strong>Introduce tu DNI :</strong><input type="text" name="dni"/><br><br>
+
+
+<br>
+
+<button name="btn_mostrar">Mostrar</button><br><br>';
 
 if(isset($_REQUEST['btn_mostrar']))//si has pulsado el boton de enviar
 { 
-
-  print '
-
-    <br><h2 class="seleccion">Seleccione una opcion</h2><br>
-    <div class="menu_citas">
-            <li><a href="aalta.php">Añadir cita</a></li>
-            <li><a href="aborrar.php">Cancelar cita</a></li>
-            <li><a href="amodificar.php">Modificar cita</a></li>
-            <li><a href="aconsultar.php">Consultar</a></li>
-    </div><br><br>
-
-
-';
-
-
   $resultado=mysqli_query($c,"SELECT cliente_cita.DNI_C,cliente_cita.n_cita FROM cliente_cita WHERE (dni_c='$dni')");
   
   if (mysqli_errno($c)==0){
-    echo "<table align=center border=2 bgcolor='#F0FFFF'>";
+    echo "<table align=center border=2 bgcolor='#03439C'>";
     echo "<tr><td colspan=3 style='text-align:center; padding:5px;'><b>DATOS SOLICITADOS</b></td></tr>";
     echo "<tr><td style='text-align: center; padding:5px;'><b>DNI</b></td>";
     echo "<td style='text-align: center; padding:5px;'><b>Nº de cita</b></td>";
