@@ -5,7 +5,7 @@ include 'head.php';
 
 print '
     <div class="nav">
-        <h2 class="seleccion">Seleccione una opcion</h2><br>
+        <h2 class="seleccion">Bienvenido al area de clientes</h2><br>
         <div class="menu_citas">
             <li><a href="userAdd.php">Añadir usuario</a></li>
             <li><a href="userDelete.php">Eliminar usuario</a></li>

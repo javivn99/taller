@@ -21,7 +21,7 @@ mysqli_select_db($c,$base);
 print '      
 
 <div class="nav">
-<h2 class="seleccion">Seleccione una opcion</h2><br>
+<h2 class="seleccion">Bienvenido al area de citas</h2><br>
 <div class="menu_citas">
         <li><a href="aalta.php">Añadir cita</a></li>
         <li><a href="aborrar.php">Cancelar cita</a></li>

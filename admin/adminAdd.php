@@ -13,7 +13,7 @@ mysqli_select_db($c,$base);
     print' 
 
     <div class="nav">
-           <h2 class="seleccion">Seleccione una opcion</h2><br>
+           <h2 class="seleccion">Bienvenido al area de administradores</h2><br>
            <div class="menu_citas">
             <li><a href="adminAdd.php">Añadir administrador</a></li>
             <li><a href="adminDelete.php">Eliminar administrador</a></li>
@@ -41,9 +41,6 @@ mysqli_select_db($c,$base);
    
            <label for="uapellidos"><b>Apellidos :</b></label>
            <input type="text" placeholder="Introduce tus apellidos" name="apellidos" required><br><br>
-   
-           <label for="ufnac"><b>Fecha de nacimiento :</b></label>
-           <input type="date" placeholder="Introduce tu fecha de nacimiento" name="fnac" required><br><br>
        
            <input class="boton" type="submit" value="Crear" name="btn_registro">';  
            
@@ -51,34 +48,32 @@ mysqli_select_db($c,$base);
          if(isset($_REQUEST['btn_registro'])){
             //Variables del formulario
          error_reporting(E_ERROR | E_WARNING | E_PARSE);
-         htmlspecialchars($email = $_REQUEST['email']);
-         htmlspecialchars($password = $_REQUEST['password']);
          htmlspecialchars($dni = $_REQUEST['dni']);
          htmlspecialchars($name =$_REQUEST['name']);
          htmlspecialchars($apellidos = $_REQUEST['apellidos']);
-         htmlspecialchars($fnac =$_REQUEST['fnac']);
-         
+         htmlspecialchars($email = $_REQUEST['email']);
+         htmlspecialchars($password = $_REQUEST['password']);
+        
              if(preg_match("/^[a-zA-Z0-9._-]+[@admin]+\.([a-zA-Z]{2,4})+$/",$email)){
                 
-                     mysqli_query($c,"INSERT INTO $tabla (dni_m,nombre,apellidos,email_m,contraseña_m,f_nacimiento) VALUES ('$dni','$name','$apellidos','$email','$password','$fnac')");
+                     mysqli_query($c,"INSERT INTO $tabla (dni_m,nombre,apellidos,email_m,contraseña_m) VALUES ('$dni','$name','$apellidos','$email','$password')");
                  
                      if (mysqli_errno($c)==0){
                          echo "<h4 style='color:green;'>Administrador creado correctamente</h4>";
                      }else{
                          if (mysqli_errno($c)==1062){
-                             echo "<h4 style='color:red;'>Error al crear administrador</h4>";
+                             echo "<h4 style='color:red;'>Ya existe un administrador asociado a ese DNI.</h4>";
                          }else{ 
                              $numerror=mysqli_errno($c);
                              $descrerror=mysqli_error($c);
                              echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
                          }
                      }
-                 }else{
-                     echo "<h4 style='color:red;'>Introduce un email correcto</h4>";
-                 }
-             
-         
-             mysqli_close($c); 
+                }else{
+                    echo "<h4 style='color:red;'>Introduce un email correcto</h4>";
+                }
+    
+                 mysqli_close($c); 
                 }
                 
  include 'pie.php';

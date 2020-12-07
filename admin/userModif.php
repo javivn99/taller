@@ -14,7 +14,7 @@ mysqli_select_db($c,$base);
 print' 
 
     <div class="nav">
-           <h2 class="seleccion">Seleccione una opcion</h2><br>
+           <h2 class="seleccion">Bienvenido al area de clientes</h2><br>
            <div class="menu_citas">
             <li><a href="userAdd.php">Añadir usuario</a></li>
             <li><a href="userDelete.php">Eliminar usuario</a></li>
@@ -53,7 +53,7 @@ if(isset($_REQUEST['btn'])){
 
     if($mostrar==true){
     
-        mysqli_query($c,"UPDATE $tabla SET contraseña_c='$contraseñaNueva' WHERE contraseña_c='$contraseñaAntigua'");
+        mysqli_query($c,"UPDATE $tabla SET contraseña_c='$contraseñaNueva' WHERE contraseña_c='$contraseñaAntigua'  AND dni_c='$dni'");
         
         if (mysqli_errno($c)==0){
             echo "<h4 style='color:green;'>Contraseña actualizada</h4>"; 

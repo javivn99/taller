@@ -19,7 +19,7 @@ mysqli_select_db($c,$base);
 print '    
 
 <div class="nav">
-           <h2 class="seleccion">Seleccione una opcion</h2><br>
+           <h2 class="seleccion">Bienvenido al area de clientes</h2><br>
            <div class="menu_citas">
             <li><a href="userAdd.php">Añadir usuario</a></li>
             <li><a href="userDelete.php">Eliminar usuario</a></li>
@@ -114,7 +114,7 @@ if(isset($_REQUEST['btn_todos']))//si has pulsado el boton de enviar
     echo "</tr><tr>";
 
     while($salida = mysqli_fetch_array($resultado)){
-      for ($i=0;$i<6;$i++){
+      for ($i=0;$i<5;$i++){
        if ($i==0){
          echo "<td style='text-align:center; padding:5px;'>",$salida[$i],"</td>";
        }
@@ -139,7 +139,7 @@ if(isset($_REQUEST['btn_todos']))//si has pulsado el boton de enviar
   }
   else{
     if (mysqli_errno($c)==1062){
-      echo "<h2>No se ha podido añadir el registro</h2>";
+      echo "<h2>No hay ningun cliente registrado</h2>";
     }
     else{
       $numerror=mysqli_errno($c);
