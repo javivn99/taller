@@ -6,11 +6,6 @@ include 'head.php';
 $base="taller";
 $tabla="mecanico";
 
-
-//Variables del formulario
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
-$dni = $_REQUEST['dni'];
-
 //Conectar con el usuario y la base
 $c=mysqli_connect("localhost","javier","root");
 mysqli_select_db($c,$base);
@@ -41,6 +36,9 @@ print '
 if(isset($_REQUEST['btn']))//si has pulsado el boton de enviar
 { 
 
+  error_reporting(E_ERROR | E_WARNING | E_PARSE);
+  htmlspecialchars($dni = $_REQUEST['dni']);
+  
   $sql="SELECT * FROM mecanico WHERE dni_m='$dni'";
     $result=mysqli_query($c,$sql);
     $mostrar=mysqli_fetch_array($result);

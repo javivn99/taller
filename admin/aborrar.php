@@ -45,8 +45,8 @@ mysqli_select_db($c,$base);
 if(isset($_REQUEST['btn_borrar']))//si has pulsado el boton de enviar
 {
   error_reporting(E_ERROR | E_WARNING | E_PARSE);
-$dni = $_REQUEST['dni'];
-$num_cita = $_REQUEST['num_cita'];
+  htmlspecialchars($dni = $_REQUEST['dni']);
+  htmlspecialchars($num_cita = $_REQUEST['num_cita']);
 
     //Compruebo si existe el dni
     $sql="SELECT * FROM cliente WHERE dni_c='$dni'";

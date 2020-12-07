@@ -9,7 +9,7 @@ $tabla="cliente_cita";
 //Variables del formulario
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 $motivo = $_REQUEST['motivo'];
-$dni = $_REQUEST['dni'];
+htmlspecialchars($dni = $_REQUEST['dni']);
 
 //Conectar con el usuario y la base
 $c=mysqli_connect("localhost","javier","root");

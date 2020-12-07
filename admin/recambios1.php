@@ -8,6 +8,10 @@ foreach ($_POST['precio'] as $indice=>$valor){
     $resultado=mysqli_query($c,"UPDATE $tabla SET precio='$valor'
                             WHERE id='$indice' ");
 }
+foreach ($_POST['stock'] as $indice=>$valor){
+  $resultado=mysqli_query($c,"UPDATE $tabla SET stock='$valor'
+                          WHERE id='$indice' ");
+}
 
 mysqli_close($c);
 ?>

@@ -42,7 +42,6 @@ print'
 if(isset($_REQUEST['btn'])){
 
     error_reporting(E_ERROR | E_WARNING | E_PARSE);
-
     htmlspecialchars($dni=$_REQUEST['dni']);
     htmlspecialchars($contraseñaAntigua=$_REQUEST['contraseñaAntigua']);
     htmlspecialchars($contraseñaNueva=$_REQUEST['contraseñaNueva']);
