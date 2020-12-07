@@ -73,20 +73,20 @@ if(isset($_REQUEST['btn_enviar']))//si has pulsado el boton de enviar
       mysqli_query($c,"INSERT INTO $tabla (dni_c, n_cita) VALUES ('$dni','$motivo')");
       
       if (mysqli_errno($c)==0){
-        echo "<h2 style='color:green;'>Cita añadida</b></h2>";
+        echo "<h3 style='color:green;'>Cita añadida</b></h3>";
       }
       else{
         if (mysqli_errno($c)==1062){
-          echo "<h2  style='color:red;'>Ya tienes una cita pendiente para eso</h2>";
+          echo "<h2  style='color:red;'>No se ha podido añadir la cita</h2>";
         }
         else{
           $numerror=mysqli_errno($c);
           $descrerror=mysqli_error($c);
-          echo "<h2 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h2>  <br>";
+          echo "<h4 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h4>  <br>";
         }
   }
 }else{
-    echo "<h2 style='color:red;'>Error. Compruebe el dni.</h2>";
+    echo "<h4 style='color:red;'>No existe un cliente con ese DNI.</h4>";
 }
 mysqli_close($c);   
   
