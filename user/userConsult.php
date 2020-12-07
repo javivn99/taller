@@ -19,7 +19,7 @@ mysqli_select_db($c,$base);
 print '    
 
 <div class="nav">
-           <h2 class="seleccion">Bienvenido a tu area personales</h2><br>
+           <h2 class="seleccion">Bienvenido a tu area personal</h2><br>
            <div class="menu_citas">
             <li><a href="userConsult.php">Consultar datos personales</a></li>
             <li><a href="userDelete.php">Eliminar usuario</a></li>
