@@ -22,12 +22,12 @@ CREATE TABLE IF NOT EXISTS `taller`.`MECANICO` (
 ENGINE = InnoDB;
 
 INSERT INTO  `taller`.`MECANICO` (`DNI_M`, `NOMBRE`, `APELLIDOS`, `EMAIL_M`,  `CONTRASEÑA_M`) VALUES
-('12549876S', 'EMILIO', 'NUÑEZ DE LA SIERRA', 'emilio@admin.com','Admin7*'),
-('19865478E', 'RAUL', 'SAEZ HERNANDEZ', 'raul@admin.com','Admin7*'),
-('14783256A', 'SARA', 'REDONDO LOPEZ', 'sara@admin.com','Admin7*'),
-('10365487M', 'PAULA', 'CUADRADO SERRANO', 'paula@admin.com','Admin7*'),
-('12563048U', 'ARTURO', 'NIETO ROCHAS', 'arturo@admin.com','Admin7*'),
-('12498654P', 'EZEQUIEL', 'FERNANDEZ ESPINOSA', 'ezequiel@admin.com','Admin7*');
+('12549876S', 'Emilio', 'Nuñez de la Sierra', 'emilio@admin.com','Admin7*'),
+('19865478E', 'Raul', 'Saez Hernandez', 'raul@admin.com','Admin7*'),
+('14783256A', 'Sara', 'Redondo Lopez', 'sara@admin.com','Admin7*'),
+('10365487M', 'Paula', 'Cuadrado Serrano', 'paula@admin.com','Admin7*'),
+('12563048U', 'Arturo', 'Nieto Rochas', 'arturo@admin.com','Admin7*'),
+('12498654P', 'Ezequiel', 'Fernandez Espinosa', 'ezequiel@admin.com','Admin7*');
 
 CREATE TABLE IF NOT EXISTS `taller`.`TALLER_MECANICO` (
   `NIF` INT(3),
@@ -73,13 +73,13 @@ CREATE TABLE IF NOT EXISTS `taller`.`CLIENTE` (
 ENGINE = InnoDB;
 
 INSERT INTO  `taller`.`CLIENTE` (`DNI_C`, `NOMBRE`, `APELLIDOS`, `EMAIL_C`, `CONTRASEÑA_C`, `MATRICULA`) VALUES
-('14683000R', 'ERNESTO', 'URRUTIA GONZALEZ', 'user1@gmail.com', 'user1', '5874LSD'),
-('15486548B', 'BRAULIO', 'VALDEMORO MARTIN', 'user2@gmail.com','user2','2654YTU'),
-('15487965J', 'INES', 'YLLERA MENDEZ', 'user3@gmail.com','user3', '9786BPM'),
-('16541635T', 'EMMA', 'MARTIN SORIA', 'user4@gmail.com','user4', '9345FQV'),
-('15487896P', 'RICK', 'VEGAS RODRIGUEZ', 'user5@gmail.com','user5', '8976CNV'),
-('15687868L', 'ARNALDO', 'RUIPEREZ FUERTES', 'user6@gmail.com','user6', '0982HTY'),
-('14300085K', 'CAROLO', 'SANCHEZ MARTINEZ', 'user7@gmail.com','user7', '2345LKJ');
+('14683000R', 'Ernesto', 'Urrutia Gonzalez', 'user1@gmail.com', 'User1*', '5874LSD'),
+('15486548B', 'Braulio', 'Valdemoro Martin', 'user2@gmail.com','User1*','2654ZTB'),
+('15487965J', 'Ines', 'Yllera Mendez', 'user3@gmail.com','User1*', '9786BPN'),
+('16541635T', 'Emma', 'Martin Soria', 'user4@gmail.com','User1*', '9345FQV'),
+('15487896P', 'Rick', 'Vegas Rodriguez', 'user5@gmail.com','User1*', '8976CNV'),
+('15687868L', 'Arnaldo', 'Ruiperez Lorca', 'user6@gmail.com','User1*', '0982HTF'),
+('14300085K', 'Carolo', 'Sanchez Martinez', 'user7@gmail.com','User1*', '2345LKJ');
 
 CREATE TABLE IF NOT EXISTS `taller`.`CLIENTE_CITA` (
  `DNI_C` VARCHAR(9),
