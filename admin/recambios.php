@@ -27,11 +27,11 @@ $resultado=mysqli_query($c,"SELECT * FROM $tabla ");
 
 # encabezados
 
-echo "<table align=center border=2 bgcolor='#F0FFFF'>";
-echo "<td colspan=3 align=center>Para modificar escribe en la casilla correspondiente</td><tr>";
-echo "<td align=center>ID</td>";
-echo "<td align=center>Producto.</td>";
-echo "<td align=center>Precio</td></tr><tr>";
+echo "<table align=center border=2 bgcolor='#03439C'>";
+echo "<td colspan=3 style='text-align: center; padding:5px; color:white;'>PARA MODIFICAR ESCRIBE EN LA CASILLA CORRESPONDIENTE</td><tr>";
+echo "<td a style='text-align: center; padding:5px; color:white;'>ID</td>";
+echo "<td style='text-align: center; padding:5px; color:white;'>Producto.</td>";
+echo "<td  style='text-align: center; padding:5px; color:white;'>Precio</td></tr><tr>";
 
 
 
@@ -40,13 +40,13 @@ echo "<form name='modificar' method=\"POST\" action='recambios1.php'>";
 while($salida = mysqli_fetch_array($resultado)){
   for ($i=0;$i<3;$i++){
    if ($i==0){
-     echo "<td>",$salida[$i],"</td>";
+     echo "<td  style='text-align: center; padding:5px; color:white;'>",$salida[$i],"</td>";
    }
    if ($i==1){
-     echo "<td>",$salida[$i],"</td>";
+     echo "<td  style='text-align: center; padding:5px; color:white;'>",$salida[$i],"</td>";
    }
    if ($i==2){
-     echo "<td><input type=text size=10 name=precio[$salida[0]] value=$salida[$i]></td>";
+     echo "<td style='text-align: center; padding:5px;' color:white;><input type=text size=10 name=precio[$salida[0]] value=$salida[$i]></td>";
    }
   }
   echo "</tr><tr>";
@@ -54,14 +54,13 @@ while($salida = mysqli_fetch_array($resultado)){
 mysqli_close($c);
 
 echo "
-<td colspan=3 align=center><br><input type=submit value='Modificar'>
-&nbsp;<input type=reset value='Restablecer'></td></tr></table><br>
-";
-
-echo '
+<td colspan=3  style='text-align: center; padding:5px;'><br><input type=submit value='Modificar'>
+&nbsp;<input type=reset value='Restablecer'>&nbsp;
 <div>
-<h2 style="text-align: center;"><a style="color: white; text-decoration: none;" href="productoAdd.php">Añadir producto</a></h2>
-</div>';
+<h4 style='text-align: center;'><a style='color: white; text-decoration: none;' href='productoAdd.php'>Añadir producto</a></h4>
+</div>
+</td></tr></table><br>
+";
 
 include 'pie.php';
 ?>

@@ -31,9 +31,10 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 htmlspecialchars($name =$_REQUEST['name']);
 htmlspecialchars($precio = $_REQUEST['precio']);
 
-    $result=mysqli_query($c," SELECT COUNT (*) as total FROM $tabla");
+    $result=mysqli_query($c," SELECT count(id) FROM $tabla");
     $datos=mysqli_fetch_assoc($result);
-    $totalProductos= $data['total'] + 1;
+    $numero=intval($datos[0]);
+    $totalProductos= $numero + 1;
         
 
             mysqli_query($c,"INSERT INTO $tabla (id,producto,precio) VALUES ('$totalProductos','$name','$precio','1')");
