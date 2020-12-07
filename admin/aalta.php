@@ -6,11 +6,6 @@ include 'head.php';
 $base="taller";
 $tabla="cliente_cita";
 
-//Variables del formulario
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
-$motivo = $_REQUEST['motivo'];
-htmlspecialchars($dni = $_REQUEST['dni']);
-
 //Conectar con el usuario y la base
 $c=mysqli_connect("localhost","javier","root");
 mysqli_select_db($c,$base);
@@ -63,6 +58,10 @@ mysqli_select_db($c,$base);
 //Añadir a cliente_citas sus datos
 if(isset($_REQUEST['btn_enviar']))//si has pulsado el boton de enviar
 {
+  error_reporting(E_ERROR | E_WARNING | E_PARSE);
+$motivo = $_REQUEST['motivo'];
+htmlspecialchars($dni = $_REQUEST['dni']);
+
   
   $sql="SELECT * FROM cliente WHERE dni_c='$dni'";
     $result=mysqli_query($c,$sql);
@@ -70,24 +69,24 @@ if(isset($_REQUEST['btn_enviar']))//si has pulsado el boton de enviar
 
     if($mostrar==true){
 
-      mysqli_query($c,"INSERT INTO $tabla (dni_c, n_cita) VALUES ('$dni','$motivo')");
-      
-      if (mysqli_errno($c)==0){
-        echo "<h2 style='color:green;'>Cita añadida</b></h2>";
+          mysqli_query($c,"INSERT INTO $tabla (dni_c, n_cita) VALUES ('$dni','$motivo')");
+          
+          if (mysqli_errno($c)==0){
+            echo "<h2 style='color:green;'>Cita añadida</b></h2>";
+          }
+          else{
+            if (mysqli_errno($c)==1062){
+              echo "<h2  style='color:red;'>Ya tienes una cita pendiente para eso</h2>";
+            }
+            else{
+              $numerror=mysqli_errno($c);
+              $descrerror=mysqli_error($c);
+              echo "<h2 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h2>  <br>";
+            }
       }
-      else{
-        if (mysqli_errno($c)==1062){
-          echo "<h2  style='color:red;'>Ya tienes una cita pendiente para eso</h2>";
-        }
-        else{
-          $numerror=mysqli_errno($c);
-          $descrerror=mysqli_error($c);
-          echo "<h2 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h2>  <br>";
-        }
-  }
-}else{
-    echo "<h2 style='color:red;'>Error. Compruebe el dni.</h2>";
-}
+    }else{
+        echo "<h2 style='color:red;'>Error. Compruebe el dni.</h2>";
+    }
 mysqli_close($c);   
   
 } 

@@ -52,23 +52,26 @@ if(isset($_REQUEST['btn'])){
     $mostrar=mysqli_fetch_array($result);
 
     if($mostrar==true){
+        if(preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{4,15}/",$password)){
     
-        mysqli_query($c,"UPDATE $tabla SET contraseña_m='$contraseñaNueva' WHERE contraseña_m='$contraseñaAntigua' AND dni_m='$dni'");
-        
-        if (mysqli_errno($c)==0){
-            echo "<h4 style='color:green;'>Contraseña actualizada</h4>"; 
-        }else{ 
-            if (mysqli_errno($c)==1062){
-                echo "<h4 style='color:red;'>No se ha podido actualizar la contraseña del administrador<br>Comprueba que has introducido bien todos los datos</h4>"; 
-            }else{  
-                $numerror=mysqli_errno($c); 
-                $descrerror=mysqli_error($c); 
-                echo "<h4 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h4>"; 
-            } 
-        
+            mysqli_query($c,"UPDATE $tabla SET contraseña_m='$contraseñaNueva' WHERE contraseña_m='$contraseñaAntigua' AND dni_m='$dni'");
+            
+            if (mysqli_errno($c)==0){
+                echo "<h4 style='color:green;'>Contraseña actualizada</h4>"; 
+            }else{ 
+                if (mysqli_errno($c)==1062){
+                    echo "<h4 style='color:red;'>No se ha podido actualizar la contraseña del administrador<br>Comprueba que has introducido bien todos los datos</h4>"; 
+                }else{  
+                    $numerror=mysqli_errno($c); 
+                    $descrerror=mysqli_error($c); 
+                    echo "<h4 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h4>"; 
+                } 
+            }
+        }else{
+            echo "<h4 style='color:red;'>Introduce una nueva contraseña valida</h4>";
         }
     }else{
-        echo "No existe un administrador asociado a ese DNI.";
+        echo "<h4 style='color:red;'>No existe un administrador asociado a ese DNI</h4>";
     }
     mysqli_close($c);    
 }

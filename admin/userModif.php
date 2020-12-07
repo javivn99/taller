@@ -51,23 +51,27 @@ if(isset($_REQUEST['btn'])){
     $mostrar=mysqli_fetch_array($result);
 
     if($mostrar==true){
+
+        if(preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{4,15}/",$contraseñaNueva)){
     
-        mysqli_query($c,"UPDATE $tabla SET contraseña_c='$contraseñaNueva' WHERE contraseña_c='$contraseñaAntigua'  AND dni_c='$dni'");
-        
-        if (mysqli_errno($c)==0){
-            echo "<h4 style='color:green;'>Contraseña actualizada</h4>"; 
-        }else{ 
-            if (mysqli_errno($c)==1062){
-                echo "<h4 style='color:red;'>No se ha podido actualizar la contraseña del cliente<br>Comprueba que has introducido bien todos los datos</h4>"; 
-            }else{  
-                $numerror=mysqli_errno($c); 
-                $descrerror=mysqli_error($c); 
-                echo "<h4 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h4>"; 
-            } 
-        
+            mysqli_query($c,"UPDATE $tabla SET contraseña_c='$contraseñaNueva' WHERE contraseña_c='$contraseñaAntigua'  AND dni_c='$dni'");
+            
+            if (mysqli_errno($c)==0){
+                echo "<h2 style='color:green;'>Contraseña actualizada</h2>"; 
+            }else{ 
+                if (mysqli_errno($c)==1062){
+                    echo "<h2 style='color:red;'>No se ha podido actualizar la contraseña del cliente<br>Comprueba que has introducido bien todos los datos</h2>"; 
+                }else{  
+                    $numerror=mysqli_errno($c); 
+                    $descrerror=mysqli_error($c); 
+                    echo "<h2 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h2>"; 
+                } 
+            }
+        }else{
+            echo "<h2 style='color:red;'>Introduce una nueva contraseña valida</h2>";
         }
     }else{
-        echo "No existe un cliente con ese DNI.";
+        echo "<h2 style='color:red;'>No existe un cliente con ese DNI</h2>";
     }
     mysqli_close($c);    
 }
