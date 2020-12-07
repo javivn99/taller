@@ -47,6 +47,7 @@ if(isset($_REQUEST['btn_eliminar'])){
         mysqli_query($c,"DELETE FROM $tabla  WHERE (dni_m='$dni')");
 
         if (mysqli_errno($c)==0){
+            mysqli_query($c,"DELETE FROM taller_mecanico  WHERE (dni_m='$dni')");
             echo "<h4 style='color:green;'>Administrador eliminado</h4>"; 
         }else{ 
             if (mysqli_errno($c)==1062){

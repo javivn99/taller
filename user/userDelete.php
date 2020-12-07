@@ -46,6 +46,7 @@ if(isset($_REQUEST['btn_eliminar'])){
         mysqli_query($c,"DELETE FROM $tabla  WHERE (dni_c='$dni')");
 
         if (mysqli_errno($c)==0){
+            mysqli_query($c,"DELETE FROM cliente_cita  WHERE (dni_c='$dni')");
             mysqli_close($c);  
             header('Location:../index.php'); 
         }else{ 

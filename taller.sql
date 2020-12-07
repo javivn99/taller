@@ -22,12 +22,12 @@ CREATE TABLE IF NOT EXISTS `taller`.`MECANICO` (
 ENGINE = InnoDB;
 
 INSERT INTO  `taller`.`MECANICO` (`DNI_M`, `NOMBRE`, `APELLIDOS`, `EMAIL_M`,  `CONTRASEÑA_M`) VALUES
-('12549876S', 'EMILIO', 'NUÑEZ DE LA SIERRA', 'emilio@admin.com','admin'),
-('19865478E', 'RAUL', 'SAEZ HERNANDEZ', 'raul@admin.com','admin'),
-('14783256A', 'SARA', 'REDONDO LOPEZ', 'sara@admin.com','admin'),
-('10365487M', 'PAULA', 'CUADRADO SERRANO', 'paula@admin.com','admin'),
-('12563048U', 'ARTURO', 'NIETO ROCHAS', 'arturo@admin.com','admin'),
-('12498654P', 'EZEQUIEL', 'FERNANDEZ ESPINOSA', 'ezequiel@admin.com','admin');
+('12549876S', 'EMILIO', 'NUÑEZ DE LA SIERRA', 'emilio@admin.com','Admin7*'),
+('19865478E', 'RAUL', 'SAEZ HERNANDEZ', 'raul@admin.com','Admin7*'),
+('14783256A', 'SARA', 'REDONDO LOPEZ', 'sara@admin.com','Admin7*'),
+('10365487M', 'PAULA', 'CUADRADO SERRANO', 'paula@admin.com','Admin7*'),
+('12563048U', 'ARTURO', 'NIETO ROCHAS', 'arturo@admin.com','Admin7*'),
+('12498654P', 'EZEQUIEL', 'FERNANDEZ ESPINOSA', 'ezequiel@admin.com','Admin7*');
 
 CREATE TABLE IF NOT EXISTS `taller`.`TALLER_MECANICO` (
   `NIF` INT(3),

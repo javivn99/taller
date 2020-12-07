@@ -63,6 +63,7 @@ mysqli_select_db($c,$base);
                                 mysqli_query($c,"INSERT INTO $tabla (dni_m,nombre,apellidos,email_m,contraseña_m) VALUES ('$dni','$name','$apellidos','$email','$password')");
                             
                                 if (mysqli_errno($c)==0){
+                                    mysqli_query($c,"INSERT INTO taller_mecanico (nif, dni_m) VALUES ('1','$dni')");
                                     echo "<h4 style='color:green;'>Administrador creado correctamente</h4>";
                                 }else{
                                     if (mysqli_errno($c)==1062){

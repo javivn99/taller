@@ -47,6 +47,7 @@ if(isset($_REQUEST['btn_eliminar'])){
         mysqli_query($c,"DELETE FROM $tabla  WHERE (dni_c='$dni')");
 
         if (mysqli_errno($c)==0){
+            mysqli_query($c,"DELETE FROM cliente_cita  WHERE (dni_c='$dni')");
             echo "<h4 style='color:green;'>Cliente eliminado</h4>"; 
         }else{ 
             if (mysqli_errno($c)==1062){
