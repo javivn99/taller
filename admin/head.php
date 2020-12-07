@@ -21,7 +21,7 @@ print'
             <li><a href="citas.php">Citas</a></li>
             <li><a href="clientes.php">Clientes</a></li>
             <li><a href="administradores.php">Mecanicos</a></li>   
-            <li><a href="#">Recambios</a></li>
+            <li><a href="recambios.php">Recambios</a></li>
             <li><a href="aabout.php">Codigos cita</a></li>
         </ul>
     </nav>
