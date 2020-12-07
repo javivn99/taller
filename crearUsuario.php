@@ -1,62 +1,15 @@
 <?php
 session_start();
-$errors = array();
 
-$db = mysqli_connect('localhost', 'javier', 'root', 'taller');
+$base="taller";
+$cliente="cliente";
 
-if(isset($_REQUEST['btn_registro']))//si has pulsado el boton login
-{
-
- // receive all input values from the form
- error_reporting(E_ERROR | E_WARNING | E_PARSE);
- $email = mysqli_real_escape_string($db, $_REQUEST['email']);
- $password = mysqli_real_escape_string($db, $_REQUEST['password']);
- $dni = mysqli_real_escape_string($db, $_REQUEST['dni']);
- $name = mysqli_real_escape_string($db, $_REQUEST['name']);
- $apellidos = mysqli_real_escape_string($db, $_REQUEST['apellidos']);
- $fnac = mysqli_real_escape_string($db, $_REQUEST['fnac']);
- $matricula = mysqli_real_escape_string($db, $_REQUEST['matricula']);
+$c=mysqli_connect("localhost","javier","root");
+mysqli_select_db($c,$base);
 
 
- // form validation: ensure that the form is correctly filled ...
- // by adding (array_push()) corresponding error unto $errors array
- if (empty($email)) { array_push($errors, "Email es obligatorio"); }
- if (empty($password)) { array_push($errors, "Contraseña es obligatoria"); }
- if (empty($dni)) { array_push($errors, "DNI es obligatorio"); }
- if (empty($name)) { array_push($errors, "Nombre es obligatorio"); }
- if (empty($apellidos)) { array_push($errors, "Apellidos son obligatorios"); }
- if (empty($fnac)) { array_push($errors, "Fecha de nacimiento obligatoria"); }
- if (empty($matricula)) { array_push($errors, "Matricula es obligatorio"); }
-
- // first check the database to make sure 
-  // a user does not already exist with the same username and/or email
-  $user_check_query = "SELECT * FROM cliente WHERE email_c='$email' OR dni_c='$dni' LIMIT 1";
-  $result = mysqli_query($db, $user_check_query);
-  $user = mysqli_fetch_assoc($result);
-  
-  if ($user) { // if user exists
-    if ($user['email'] === $email) {
-      array_push($errors, "El email ya existe");
-    }
-
-    if ($user['dni'] === $dni) {
-      array_push($errors, "Este dni ya esta asociado a otra cuenta");
-    }
-  }
-
-  // Finally, register user if there are no errors in the form
-  if (count($errors) == 0) {
-  	$password = md5($password_1);//encrypt the password before saving in the database
-
-  	$query = "INSERT INTO cliente (dni_c, nombre, apellidos, email_c, contraseña_c, f_nacimiento, matricula) 
-  			  VALUES('$dni', '$name', '$apellidos', '$email', '$password', '$fnac', '$matricula')";
-  	mysqli_query($db, $query);
-  	$_SESSION['email'] = $email;
-  	$_SESSION['success'] = "Ahora estas logeado";
-  	header('location: index.php');
-    }
- } else{
-echo'<!DOCTYPE html>
+echo '
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -88,11 +41,10 @@ echo'<!DOCTYPE html>
                 <label for="uapellidos"><b>Apellidos</b></label>
                 <input type="text" placeholder="Introduce tus apellidos" name="apellidos" required>
 
-                <label for="ufnac"><b>Fecha de nacimiento</b></label><br>
-                <input type="date" placeholder="Introduce tu fecha de nacimiento" name="fnac" required><br><br>
-
                 <label for="umatricula"><b>Matricula</b></label>
                 <input type="text" placeholder="Introduce la matricula de tu vehiculo" name="matricula" required><br><br>
+
+                <p><a style="text-decoration:none; color: deeppink;" href="index.php">Volver</a></p>
             
                 <input class="boton" type="submit" value="Registarse" name="btn_registro">
             </div>
@@ -100,5 +52,37 @@ echo'<!DOCTYPE html>
     </form>
 
 </body>
-</html>';
- }
+</html>
+';
+
+if(isset($_REQUEST['btn_registro'])){
+  //Variables del formulario
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+htmlspecialchars($dni = $_REQUEST['dni']);
+htmlspecialchars($name =$_REQUEST['name']);
+htmlspecialchars($apellidos = $_REQUEST['apellidos']);
+htmlspecialchars($email = $_REQUEST['email']);
+htmlspecialchars($password = $_REQUEST['password']);
+htmlspecialchars($matricula = $_REQUEST['matricula']);
+
+   if(!preg_match("/^[a-zA-Z0-9._-]+[@admin]+\.([a-zA-Z]{2,4})+$/",$email) && preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})+$/",$email)){
+           mysqli_query($c,"INSERT INTO $cliente (dni_c,nombre,apellidos,email_c,contraseña_c, matricula) VALUES ('$dni','$name','$apellidos','$email','$password','$matricula')");
+       
+           if (mysqli_errno($c)==0){
+               echo "<div style='text-align:center;'><h4 style='color:green;'>Usuario añadido correctamente</h4></div>";
+           }else{
+               if (mysqli_errno($c)==1062){
+                   echo "<div style='text-align:center;'><h4 style='color:red;'>Error al añadir usuario. El usuario ya existe</h4></div>";
+               }else{ 
+                   $numerror=mysqli_errno($c);
+                   $descrerror=mysqli_error($c);
+                   echo "<div style='text-align:center;'><h4 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h4></div>  <br>";
+               }
+           }
+       }else{
+           echo "<div style='text-align:center;'><h4 style='color:red;'>Introduce un email correcto</h4></div>";
+       }
+   
+
+   mysqli_close($c); 
+}   

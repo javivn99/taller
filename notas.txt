@@ -2,3 +2,5 @@ EN ADMIN:
     -Citas: En borrar y modificar citas. Si pongo un DNI bien pero me invento el nº de las citas no da error.
     -Recambios: Falta acabar el error ese de añadir productos.
 
+EN INDEX:
+    -Falta que al poner un user aleatorio y contraseña aleatoria diga que son incorrectos. Pq solo se recarga y no dice el error.

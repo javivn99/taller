@@ -25,6 +25,7 @@ if ($c ->connect_error) {
         <div class="container">
             
                 <h1>Inicio de sesion</h1>
+                <p style="font-size:12px;">Solo empleados</p>
             
             
                 <label for="uname"><b>Email</b></label>
@@ -33,9 +34,8 @@ if ($c ->connect_error) {
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Introduce tu contraseña" name="password" required>
                 <br><br>
-                <p><a style="text-decoration:none; color: deeppink;" href="crearUsuario.php">¿Eres nuevo? Crea aqui una cuenta</a></p>
-                <p><a style="text-decoration:none; color: deeppink;" href="indexAdmin.php">¿Eres empleado?</a></p>
-            
+                <p><a style="text-decoration:none; color: deeppink;" href="index.php">Volver</a></p>
+
                 <input class="boton" type="submit" value="Log in" name="btn_login">
             </div>
             <br><br>
@@ -49,8 +49,6 @@ if ($c ->connect_error) {
 }
 
 
-
-
 if(isset($_REQUEST['btn_login']))//si has pulsado el boton login
 {
     htmlspecialchars($email=$_REQUEST['email']);
@@ -61,19 +59,21 @@ if(isset($_REQUEST['btn_login']))//si has pulsado el boton login
         echo '<h4>Rellene todos los campos</h4>';
     } 
     
-    $sql="SELECT * FROM cliente WHERE email_c='$email'";
+    
+    
+    $sql="SELECT * FROM mecanico WHERE email_m='$email'";
     $result=mysqli_query($c,$sql);
     $mostrar=mysqli_fetch_array($result);
 
     if($mostrar==true){
 
-        $sql = "SELECT * FROM cliente WHERE email_c='$email' AND contraseña_c = '$password'";
+        $sql = "SELECT * FROM mecanico WHERE email_m='$email' AND contraseña_m = '$password'";
         $resultado = mysqli_query($c, $sql);
 
         if($mostar=mysqli_fetch_array($resultado)==true){
-            header('Location:user/uprincipal.php');
+            header('Location:admin/aprincipal.php');
         } else {
-            echo "<div style='text-align:center;'><h4 style='color:red; align:center;'>Email o contraseña incorrecta</h4><div>";
+            echo "<div style='text-align:center;'><h4 style='color:red;>Email o contraseña incorrecta</h4><div>";
 
         }
     }
