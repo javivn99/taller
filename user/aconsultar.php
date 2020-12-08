@@ -117,7 +117,7 @@ if(isset($_REQUEST['btn_mostrar']))//si has pulsado el boton de enviar
   }
   else{
     if (mysqli_errno($c)==1062){
-      echo "<h2 style='color:red;'>No se puede mostrar la consulta</h2>";
+      echo "<h2 style='color:red;'>Error al realizar la consulta. Prueba otra vez.</h2>";
     }
     else{
       $numerror=mysqli_errno($c);
@@ -126,7 +126,7 @@ if(isset($_REQUEST['btn_mostrar']))//si has pulsado el boton de enviar
     }
   }
 }else{
-  echo "<h2 style='color:red;'>No existe un cliente con ese DNI.</h2>";
+  echo "<h2 style='color:red;'>Error. Comprueba que has introducido bien el DNI</h2>";
 }
   
 } 

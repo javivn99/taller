@@ -72,11 +72,11 @@ htmlspecialchars($dni = $_REQUEST['dni']);
           mysqli_query($c,"INSERT INTO $tabla (dni_c, n_cita) VALUES ('$dni','$motivo')");
           
           if (mysqli_errno($c)==0){
-            echo "<h2 style='color:green;'>Cita añadida</b></h2>";
+            echo "<h2 style='color:green;'>Cita añadida correctamente</b></h2>";
           }
           else{
             if (mysqli_errno($c)==1062){
-              echo "<h2  style='color:red;'>Ya tienes una cita pendiente para eso</h2>";
+              echo "<h2  style='color:red;'>Error. El cliente ya tiene una cita pendiente con ese motivo</h2>";
             }
             else{
               $numerror=mysqli_errno($c);
@@ -85,7 +85,7 @@ htmlspecialchars($dni = $_REQUEST['dni']);
             }
       }
     }else{
-        echo "<h2 style='color:red;'>Error. Compruebe el dni.</h2>";
+        echo "<h2 style='color:red;'>Error. Compruebe el dni</h2>";
     }
 mysqli_close($c);   
   

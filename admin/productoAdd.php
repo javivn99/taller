@@ -40,14 +40,14 @@ htmlspecialchars($precio = $_REQUEST['precio']);
             mysqli_query($c,"INSERT INTO $tabla (id,producto,precio) VALUES ('$totalProductos','$name','$precio','1')");
         
             if (mysqli_errno($c)==0){
-                echo "<h4 style='color:green;'>Producto añadido correctamente</h4>";
+                echo "<h2 style='color:green;'>Producto añadido correctamente</h2>";
             }else{
                 if (mysqli_errno($c)==1062){
-                    echo "<h4 style='color:red;'>Error al añadir el producto</h4>";
+                    echo "<h2 style='color:red;'>Error al añadir el producto</h2>";
                 }else{ 
                     $numerror=mysqli_errno($c);
                     $descrerror=mysqli_error($c);
-                    echo "<h4 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h4>  <br>";
+                    echo "<h2 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h2>  <br>";
                 }
             }    
 

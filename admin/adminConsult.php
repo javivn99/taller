@@ -79,16 +79,16 @@ if(isset($_REQUEST['btn']))//si has pulsado el boton de enviar
   }
   else{
     if (mysqli_errno($c)==1062){
-      echo "<h2>No se puede mostrar esa consulta</h2>";
+      echo "<h2  style='color:green;'>Error al realizar la consulta. Prueba otra vez</h2>";
     }
     else{
       $numerror=mysqli_errno($c);
       $descrerror=mysqli_error($c);
-      echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
+      echo "<h2  style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror </h2> <br>";
     }
   }
 }else{
-  echo "<h4 style='color:red;'>No existe un adminstrador asociado a ese DNI.</h4>";
+  echo "<h2 style='color:red;'>Error. No existe ningun adminstrador asociado a ese DNI</h2>";
 }
   
 } 
@@ -129,12 +129,12 @@ if(isset($_REQUEST['btn_todos']))//si has pulsado el boton de enviar
   }
   else{
     if (mysqli_errno($c)==1062){
-      echo "<h2>No hay ningun administrador registrado</h2>";
+      echo "<h2  style='color:green;'>Error al realizar la consulta. Prueba otra vez</h2>";
     }
     else{
       $numerror=mysqli_errno($c);
       $descrerror=mysqli_error($c);
-      echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
+      echo "<h2  style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror </h2> <br>";
     }
   }
   

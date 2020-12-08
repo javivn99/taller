@@ -69,14 +69,14 @@ htmlspecialchars($matricula = $_REQUEST['matricula']);
                                 mysqli_query($c,"INSERT INTO $cliente (dni_c,nombre,apellidos,email_c,contraseña_c, matricula) VALUES ('$dni','$name','$apellidos','$email','$password','$matricula')");
                             
                                 if (mysqli_errno($c)==0){
-                                    echo "<div style='text-align:center;'><h4 style='color:green;'>Usuario añadido correctamente</h4></div>";
+                                    echo "<div style='text-align:center;color:green;'><h2 style='color:green;'>Usuario añadido correctamente</h2></div>";
                                 }else{
                                     if (mysqli_errno($c)==1062){
-                                        echo "<h4 style='color:red;'>Error al añadir usuario. El usuario ya existe</h4>";
+                                        echo "<h2 style='color:red;'>Error al añadir usuario. Ya existe un DNI asociado a una cuenta</h2>";
                                     }else{ 
                                         $numerror=mysqli_errno($c);
                                         $descrerror=mysqli_error($c);
-                                        echo "<div style='text-align:center;'><h4 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h4></div>  <br>";
+                                        echo "<div style='text-align:center;'><h2 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h2></div>  <br>";
                                     }
                                 }
                             }else{

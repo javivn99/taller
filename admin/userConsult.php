@@ -136,12 +136,12 @@ if(isset($_REQUEST['btn_todos']))//si has pulsado el boton de enviar
   }
   else{
     if (mysqli_errno($c)==1062){
-      echo "<h2>No hay ningun cliente registrado</h2>";
+      echo "<h2 style='color:red;'>Error al realizar la consulta. Pruebe otra vez</h2>";
     }
     else{
       $numerror=mysqli_errno($c);
       $descrerror=mysqli_error($c);
-      echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
+      echo "<h2 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror </h2> <br>";
     }
   }
   

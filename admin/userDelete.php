@@ -48,19 +48,19 @@ if(isset($_REQUEST['btn_eliminar'])){
 
         if (mysqli_errno($c)==0){
             mysqli_query($c,"DELETE FROM cliente_cita  WHERE (dni_c='$dni')");
-            echo "<h4 style='color:green;'>Cliente eliminado</h4>"; 
+            echo "<h2 style='color:green;'>Cliente eliminado correctamente</h2>"; 
         }else{ 
             if (mysqli_errno($c)==1062){
-                echo "<h4 style='color:red;'>No ha podido eliminarse al cliente</h4>"; 
+                echo "<h2 style='color:red;'>Error. No se ha podido eliminar el usuario. Pruebe otra vez</h2>"; 
             }else{  
                 $numerror=mysqli_errno($c); 
                 $descrerror=mysqli_error($c); 
-                echo "<h4 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h4>"; 
+                echo "<h2 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h2>"; 
             } 
         }
     
     }else{
-        echo "<h4 style='color:red;'>No existe un cliente con ese DNI.</h4>";
+        echo "<h2 style='color:red;'>Error. No existe ningun cliente con ese DNI</h2>";
     }
     mysqli_close($c);    
 }

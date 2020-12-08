@@ -64,34 +64,34 @@ mysqli_select_db($c,$base);
                             
                                 if (mysqli_errno($c)==0){
                                     mysqli_query($c,"INSERT INTO taller_mecanico (nif, dni_m) VALUES ('1','$dni')");
-                                    echo "<h4 style='color:green;'>Administrador creado correctamente</h4>";
+                                    echo "<h2 style='color:green;'>Administrador creado correctamente</h2>";
                                 }else{
                                     if (mysqli_errno($c)==1062){
-                                        echo "<h4 style='color:red;'>Ya existe un administrador asociado a ese DNI.</h4>";
+                                        echo "<h2 style='color:red;'>Error. Ya existe un administrador asociado a ese DNI</h2>";
                                     }else{ 
                                         $numerror=mysqli_errno($c);
                                         $descrerror=mysqli_error($c);
-                                        echo "Se ha producido un error nº $numerror que corresponde a: $descrerror  <br>";
+                                        echo "<h2  style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h2>  <br>";
                                     }
                                 }
                             }else{
-                                echo "<h4 style='color:red;'>Introduce unos apellidos validos</h4>";
+                                echo "<h2 style='color:red;'>Introduce unos apellidos validos</h2>";
                             }
                         }else{
-                            echo "<h4 style='color:red;'>Introduce un nombre valido</h4>";
+                            echo "<h2 style='color:red;'>Introduce un nombre valido</h2>";
                         }
 
                     }else{
-                        echo "<h4 style='color:red;'>Introduce un dni valido</h4>";
+                        echo "<h2 style='color:red;'>Introduce un dni valido</h2>";
                     }
                 }else{
-                    echo "<h4 style='color:red;'>Introduce una contraseña valida</h4>";
+                    echo "<h2 style='color:red;'>Introduce una contraseña valida</h2>";
                 }
             }else{
-                echo "<h4 style='color:red;'>Introduce un email valido</h4>";
+                echo "<h2 style='color:red;'>Introduce un email valido</h2>";
             }
     
-                 mysqli_close($c); 
-                }
+        mysqli_close($c); 
+    }
                 
  include 'pie.php';

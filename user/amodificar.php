@@ -62,16 +62,16 @@ if(isset($_REQUEST['btn_cambiar']))//si has pulsado el boton de enviar
         }
         else{
           if (mysqli_errno($c)==1062){
-            echo "<h2 style='color:red;'>No se ha podido añadir el registro</h2>";
+            echo "<h2 style='color:red;'>Error. No se ha podido añadir el registro</h2>";
           }
           else{
             $numerror=mysqli_errno($c);
             $descrerror=mysqli_error($c);
-            echo "<h2>Se ha producido un error nº $numerror que corresponde a: $descrerror </h2> <br>";
+            echo "<h2 style='color:red;>Se ha producido un error nº $numerror que corresponde a: $descrerror </h2> <br>";
           }
         }
   }else{
-    echo "<h2 style='color:red;'>Compruebe los datos introducidos</h2>";
+    echo "<h2 style='color:red;'>Error. Compruebe los datos introducidos</h2>";
   }
 mysqli_close($c); 
   

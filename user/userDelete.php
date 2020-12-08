@@ -51,7 +51,7 @@ if(isset($_REQUEST['btn_eliminar'])){
             header('Location:../index.php'); 
         }else{ 
             if (mysqli_errno($c)==1062){
-                echo "<h2 style='color:red;'>No se ha podido eliminar el usuario</h2>"; 
+                echo "<h2 style='color:red;'>Error. No se ha podido eliminar el usuario</h2>"; 
             }else{  
                 $numerror=mysqli_errno($c); 
                 $descrerror=mysqli_error($c); 
@@ -60,7 +60,7 @@ if(isset($_REQUEST['btn_eliminar'])){
         }
     
     }else{
-        echo "<h2 style='color:red;'>Compruebe el DNI</h2>";
+        echo "<h2 style='color:red;'>Error. Compruebe Que ha introducido correctamente el DNI</h2>";
     }    
 }
    

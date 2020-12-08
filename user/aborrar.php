@@ -58,11 +58,11 @@ $num_cita = $_REQUEST['num_cita'];
           mysqli_query($c,"DELETE FROM $tabla WHERE (dni_c='$dni') AND (n_cita='$num_cita')");
           
           if (mysqli_errno($c)==0){
-            echo "<h2  style='color:green;'>Cita eliminada</b></h2>";
+            echo "<h2  style='color:green;'>Cita cancelada correctamente</b></h2>";
           }
           else{
             if (mysqli_errno($c)==1062){
-              echo "<h2  style='color:red;'>No se ha podido cancelar la cita</h2>";
+              echo "<h2  style='color:red;'>Error. No se ha podido cancelar la cita. Pruebe otra vez</h2>";
             }
             else{
               $numerror=mysqli_errno($c);
@@ -71,7 +71,7 @@ $num_cita = $_REQUEST['num_cita'];
             }
           }
 }else{
-  echo "<h2 style='color:red;'>Compruebe el dni</h2>";
+  echo "<h2 style='color:red;'>Error. No tienes ninguna cita con ese motivo</h2>";
 }
 mysqli_close($c); 
 }

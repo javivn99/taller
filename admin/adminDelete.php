@@ -48,19 +48,19 @@ if(isset($_REQUEST['btn_eliminar'])){
 
         if (mysqli_errno($c)==0){
             mysqli_query($c,"DELETE FROM taller_mecanico  WHERE (dni_m='$dni')");
-            echo "<h4 style='color:green;'>Administrador eliminado</h4>"; 
+            echo "<h2 style='color:green;'>Usuario administrador eliminado correctamente</h2>"; 
         }else{ 
             if (mysqli_errno($c)==1062){
-                echo "<h4 style='color:red;'>No se ha podido eliminar la cuenta</h4>"; 
+                echo "<h2 style='color:red;'>No se ha podido eliminar al administrador. Pruebe otra vez</h2>"; 
             }else{  
                 $numerror=mysqli_errno($c); 
                 $descrerror=mysqli_error($c); 
-                echo "<h4 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h4>"; 
+                echo "<h2 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h2>"; 
             } 
         }
     
     }else{
-        echo "<h4 style='color:red;'>No existe un administrador asociado a ese DNI.</h4>";
+        echo "<h2 style='color:red;'>No existe ningun usuario administrador asociado a ese DNI</h2>";
     }
     mysqli_close($c);    
 }
