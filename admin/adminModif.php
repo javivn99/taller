@@ -52,7 +52,7 @@ if(isset($_REQUEST['btn'])){
     $mostrar=mysqli_fetch_array($result);
 
     if($mostrar==true){
-        if(preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{4,15}/",$password)){
+        if(preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{4,15}/",$contraseñaNueva)){
     
             mysqli_query($c,"UPDATE $tabla SET contraseña_m='$contraseñaNueva' WHERE contraseña_m='$contraseñaAntigua' AND dni_m='$dni'");
             
