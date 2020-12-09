@@ -76,6 +76,8 @@ if(isset($_REQUEST['btn_login']))//si has pulsado el boton login
             echo "<div style='text-align:center;'><h4 style='color:red; align:center;'>Email o contraseña incorrecta</h4><div>";
 
         }
+    }else{
+        echo "<h2 style='color:red;'>Error. Usuario o contraseña incorrectos</h2>";
     }
     
         

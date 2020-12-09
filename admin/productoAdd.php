@@ -33,22 +33,29 @@ if(isset($_REQUEST['btn'])){
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 htmlspecialchars($name =$_REQUEST['name']);
 htmlspecialchars($precio = $_REQUEST['precio']);
-htmlspecialchars($stock = $_REQUEST['stock']);
+htmlspecialchars($stock = $_REQUEST['stock']);     
 
-
-            mysqli_query($c,"INSERT INTO $tabla (producto,precio,stock,nif) VALUES ('$name','$precio','$stock','1')");
-        
-            if (mysqli_errno($c)==0){
-                echo "<h2 style='color:green;'>Producto añadido correctamente</h2>";
+        if(preg_match("/[A-Z]$/",$name)){
+            if(preg_match("/^[0-9]*$/",$stock)){
+                mysqli_query($c,"INSERT INTO $tabla (producto,precio,stock,nif) VALUES ('$name','$precio','$stock','1')");
+            
+                if (mysqli_errno($c)==0){
+                    echo "<h2 style='color:green;'>Producto añadido correctamente</h2>";
+                }else{
+                    if (mysqli_errno($c)==1062){
+                        echo "<h2 style='color:red;'>Error al añadir el producto</h2>";
+                    }else{ 
+                        $numerror=mysqli_errno($c);
+                        $descrerror=mysqli_error($c);
+                        echo "<h2 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h2>  <br>";
+                    }
+                } 
             }else{
-                if (mysqli_errno($c)==1062){
-                    echo "<h2 style='color:red;'>Error al añadir el producto</h2>";
-                }else{ 
-                    $numerror=mysqli_errno($c);
-                    $descrerror=mysqli_error($c);
-                    echo "<h2 style='color:red;'>Se ha producido un error nº $numerror que corresponde a: $descrerror</h2>  <br>";
-                }
-            }    
+                echo "<div style='text-align:center;'><h2 style='color:red;'>Introduce un nº de stock valido</h2></div>";
+            }
+        }else{
+            echo "<div style='text-align:center;'><h2 style='color:red;'>Introduce un nombre valido</h2></div>";
+        }   
 
     mysqli_close($c); 
         }

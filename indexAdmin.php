@@ -59,8 +59,6 @@ if(isset($_REQUEST['btn_login']))//si has pulsado el boton login
         echo '<h4>Rellene todos los campos</h4>';
     } 
     
-    
-    
     $sql="SELECT * FROM mecanico WHERE email_m='$email'";
     $result=mysqli_query($c,$sql);
     $mostrar=mysqli_fetch_array($result);
@@ -76,6 +74,8 @@ if(isset($_REQUEST['btn_login']))//si has pulsado el boton login
             echo "<div style='text-align:center;'><h4 style='color:red;>Email o contraseña incorrecta</h4><div>";
 
         }
+    }else{
+        echo "<h2 style='color:red; text-align:center;'>Error. Usuario o contraseña incorrectos</h2>";
     }
     
         
