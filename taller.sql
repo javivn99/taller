@@ -78,7 +78,7 @@ INSERT INTO  `taller`.`CLIENTE` (`DNI_C`, `NOMBRE`, `APELLIDOS`, `EMAIL_C`, `CON
 ('15487965J', 'Ines', 'Yllera Mendez', 'user3@gmail.com','User1*', '9786BPN'),
 ('16541635T', 'Emma', 'Martin Soria', 'user4@gmail.com','User1*', '9345FQV'),
 ('15487896P', 'Rick', 'Vegas Rodriguez', 'user5@gmail.com','User1*', '8976CNV'),
-('15687868L', 'Arnaldo', 'Ruiperez Lorca', 'user6@gmail.com','User1*', '0982HTF'),
+('15687868L', 'Arnaldo', 'Ruiperez Lorca', 'user6@gmail.com','User1*', '0982H'),
 ('14300085K', 'Carolo', 'Sanchez Martinez', 'user7@gmail.com','User1*', '2345LKJ');
 
 CREATE TABLE IF NOT EXISTS `taller`.`CLIENTE_CITA` (
@@ -93,18 +93,17 @@ INSERT INTO `taller`.`CLIENTE_CITA`(`DNI_C`, `N_CITA`) VALUES
 ('14683000R','1'),('15486548B','2'),('15487965J','3'),('16541635T','4'),('15487896P','5'),('15687868L','6'),('14300085K','7');
 
 CREATE TABLE IF NOT EXISTS `taller`.`RECAMBIO` (
-  `ID` VARCHAR(3) NOT NULL,
-  `PRODUCTO` VARCHAR(80) NOT NULL,
+  `ID` INT AUTO_INCREMENT PRIMARY KEY,
+  `PRODUCTO` VARCHAR(80) NOT NULL UNIQUE,
   `PRECIO` VARCHAR(15) NOT NULL,
   `STOCK` INT NOT NULL,
   `NIF` INT(3) NOT NULL,
-  PRIMARY KEY (`ID`),
   CONSTRAINT  `FK_NIF_RECAMB` FOREIGN KEY (`NIF`) REFERENCES `TALLER` (`NIF`) ON DELETE CASCADE ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-INSERT INTO `taller`.`RECAMBIO`(`ID`, `PRODUCTO`, `PRECIO`, `STOCK`, `NIF`) VALUES
-('1','PASTILLAS DE FRENO','100€','50', '1'), ('2','TAPONES PARA LLANTA','3€','200', '1'), ('3','ACEITE PARA MOTOR','35€','45', '1'), 
-('4','LIQUIDO ANTI-CONGELANTE','40€','30', '1'), ('5','LLANTAS DEPORTIVAS','600€','8', '1'),  ('6','LIMPIA PARABRISAS','25€','24', '1'), 
-('7','JUNTA DE LA CULATA','600€','6', '1'), ('8','ESCAPE WALKER','90€','7', '1'), ('9','VOLANTE DE COMPETICION','55€','2', '1'), 
-('10','NEUMATICOS MICHELIN','300€','32', '1'), ('11','NEUMATICOS PIRELLI','475€','23', '1'), ('12','DISCOS DE FRENO BREMBO','240€','14', '1'), 
-('13','LUZ DE POSICION','1€','96', '1');
+INSERT INTO `taller`.`RECAMBIO`(`PRODUCTO`, `PRECIO`, `STOCK`, `NIF`) VALUES
+('PASTILLAS DE FRENO','100€','50', '1'), ('TAPONES PARA LLANTA','3€','200', '1'), ('ACEITE PARA MOTOR','35€','45', '1'), 
+('LIQUIDO ANTI-CONGELANTE','40€','30', '1'), ('LLANTAS DEPORTIVAS','600€','8', '1'),  ('LIMPIA PARABRISAS','25€','24', '1'), 
+('JUNTA DE LA CULATA','600€','6', '1'), ('ESCAPE WALKER','90€','7', '1'), ('VOLANTE DE COMPETICION','55€','2', '1'), 
+('NEUMATICOS MICHELIN','300€','32', '1'), ('NEUMATICOS PIRELLI','475€','23', '1'), ('DISCOS DE FRENO BREMBO','240€','14', '1'), 
+('LUZ DE POSICION','1€','96', '1');

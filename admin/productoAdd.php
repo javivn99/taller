@@ -22,6 +22,9 @@ print'
 
            <label for="precio"><b>Precio :</b></label>
            <input type="text" placeholder="Introduce el precio" name="precio" required><br><br>
+
+           <label for="precio"><b>Stock :</b></label>
+           <input type="text" placeholder="Introduce el stock disponible" name="stock" required><br><br>
    
            <input class="boton" type="submit" value="Añadir" name="btn"><br><br>';
 
@@ -30,14 +33,10 @@ if(isset($_REQUEST['btn'])){
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 htmlspecialchars($name =$_REQUEST['name']);
 htmlspecialchars($precio = $_REQUEST['precio']);
+htmlspecialchars($stock = $_REQUEST['stock']);
 
-    $result=mysqli_query($c," SELECT count(id) FROM $tabla");
-    $datos=mysqli_fetch_assoc($result);
-    $numero=intval($datos[0]);
-    $totalProductos= $numero + 1;
-        
 
-            mysqli_query($c,"INSERT INTO $tabla (id,producto,precio) VALUES ('$totalProductos','$name','$precio','1')");
+            mysqli_query($c,"INSERT INTO $tabla (producto,precio,stock,nif) VALUES ('$name','$precio','$stock','1')");
         
             if (mysqli_errno($c)==0){
                 echo "<h2 style='color:green;'>Producto añadido correctamente</h2>";
