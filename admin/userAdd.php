@@ -64,7 +64,7 @@ htmlspecialchars($matricula = $_REQUEST['matricula']);
                 if(preg_match("/^\d{8}[a-zA-Z]$/",$dni)){ 
                     if(preg_match("/^[A-Z]{1}[a-z]+|[A-Z]{1}[a-z]+\s[A-Z]{1}[a-z]+$/",$name)){
                         if(preg_match("/^[A-Z]{1}[a-z]+|[A-Z]{1}[a-z]+\s[A-Z]{1}[a-z]+$/",$apellidos)){
-                            if(preg_match("/^[0-9]{4}[B-DF-HJ-NP-TV-Z]{3}$/",$matricula)){
+                            if(preg_match("/^[0-9]{4}[BCD-FGH-JKLMN-PQRST-VWXYZ]{3}$/",$matricula)){
 
                                 mysqli_query($c,"INSERT INTO $cliente (dni_c,nombre,apellidos,email_c,contraseña_c, matricula) VALUES ('$dni','$name','$apellidos','$email','$password','$matricula')");
                             
